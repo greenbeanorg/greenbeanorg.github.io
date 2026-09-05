@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>About — Andy Alexander</title>
+<meta name="description" content="About Andy Alexander — Linux systems engineer, homelab builder, and job-searching sysadmin.">
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  nav.top {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  nav.top a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-right: 1.25rem;
+  }
+  nav.top a.current { color: var(--accent); }
+  nav.top a:hover { color: var(--accent); }
+  h1 {
+    font-size: 1.9rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+  p { font-size: 1.02rem; margin-bottom: 1.25rem; }
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .now-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+  }
+  .now-panel ul { margin: 0; padding-left: 1.1rem; }
+  .now-panel li { margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .now-panel li:last-child { margin-bottom: 0; }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .cta-row a {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    transition: border-color 0.15s ease;
+  }
+  .cta-row a:hover { border-color: var(--accent); }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a href="/">Home</a>
+  <a href="/about/" class="current">About</a>
+  <a href="/resume/">Resume</a>
+</nav>
+<main>
+  <h1>About</h1>
+  <div class="subtitle">Andy Alexander — Linux systems engineer</div>
+
+  <p>
+    I'm a Linux systems engineer with about 25 years in operations, most of it
+    keeping other people's infrastructure running: high-volume transactional
+    email platforms, globally distributed web infrastructure for ESPN.com and
+    ESPN3.com at Disney, ERP rollouts, and more MPLS WANs and Nagios instances
+    than I care to count. I got my start supporting Ford Motor Company's
+    infrastructure through a Ciber/NTT contract back in 2002, and I've been
+    somewhere in the Linux/networking/storage stack ever since.
+  </p>
+
+  <p>
+    Since 2022 I've been running that same discipline at home instead of at
+    an employer — designing, breaking, fixing, and documenting a real
+    multi-site environment because it's the best way I know to keep the
+    skills sharp and prove they're current. This site and the runbooks
+    linked from it are the result: three Proxmox hosts, ZFS storage on
+    TrueNAS SCALE, OPNsense routing over XGS-PON fiber, a WireGuard overlay
+    connecting multiple sites, redundant DNS, and backups that actually get
+    verified. Nothing here is a lab exercise from a course — it's the
+    infrastructure I depend on daily, documented the way I'd want it
+    documented if someone else had to pick it up at 2am.
+  </p>
+
+  <section>
+    <h2>Right now</h2>
+    <div class="now-panel">
+      <ul>
+        <li>Looking for a Linux systems administrator / systems engineer role — remote or, if it's the right fit, on-site</li>
+        <li>Based in Ormond Beach, FL, with an eye toward relocating to Tennessee down the road</li>
+        <li>Building out VLAN segmentation, Ansible fleet roles, and Prometheus/Grafana monitoring across the homelab — see the runbooks for what's shipped versus in progress</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Get in touch</h2>
+    <p style="margin-bottom:0.75rem;">
+      The fastest way to reach me is LinkedIn. My resume — with the full
+      work history — is on this site as well.
+    </p>
+    <div class="cta-row">
+      <a href="https://linkedin.com/in/andy-alexander-linux">Connect on LinkedIn</a>
+      <a href="/resume/">View resume</a>
+      <a href="https://github.com/greenbeanorg">Browse GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>
+    &nbsp;·&nbsp;
+    <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a>
+    &nbsp;·&nbsp;
+    Ormond Beach, FL — open to remote systems engineering roles
+  </footer>
+</main>
+</body>
+</html>

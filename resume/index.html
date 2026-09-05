@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Resume — Andy Alexander</title>
+<meta name="description" content="Andy Alexander — Senior Linux Systems Engineer. 15+ years across Linux, virtualization, networking, storage, and automation.">
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  nav.top {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  nav.top a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-right: 1.25rem;
+  }
+  nav.top a.current { color: var(--accent); }
+  nav.top a:hover { color: var(--accent); }
+  h1 {
+    font-size: 1.9rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.92rem;
+  }
+  .contact-row a { color: var(--accent); text-decoration: none; }
+  .contact-row a:hover { text-decoration: underline; }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text) !important;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    text-decoration: none !important;
+    transition: border-color 0.15s ease;
+  }
+  .download-btn:hover { border-color: var(--accent); }
+  .lede {
+    font-size: 1.02rem;
+    margin-bottom: 2.5rem;
+    color: var(--text);
+  }
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .skills-grid {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .skill-row {
+    font-size: 0.92rem;
+  }
+  .skill-row .label {
+    color: #fff;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .skill-row .items { color: var(--muted); }
+  .job {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .job-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.3rem 1rem;
+    margin-bottom: 0.15rem;
+  }
+  .job-title { color: #fff; font-weight: 600; font-size: 1rem; }
+  .job-company { color: var(--accent); font-weight: 500; }
+  .job-dates { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+  .job-location { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .job ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+  }
+  .job li {
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+  }
+  .job li:last-child { margin-bottom: 0; }
+  .env-line {
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .env-line strong { color: var(--muted); font-weight: 600; }
+  .earlier {
+    font-size: 0.9rem;
+    color: var(--muted);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  @media print {
+    nav.top, .download-btn { display: none; }
+    body { background: #fff; color: #000; }
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a href="/">Home</a>
+  <a href="/about/">About</a>
+  <a href="/resume/" class="current">Resume</a>
+</nav>
+<main>
+  <h1>Andy Alexander</h1>
+  <div class="subtitle">Senior Linux Systems Engineer</div>
+  <div class="contact-row">
+    <span>Ormond Beach, FL (open to remote)</span>
+    <a href="https://linkedin.com/in/andy-alexander-linux">linkedin.com/in/andy-alexander-linux</a>
+    <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>
+    <a class="download-btn" href="/resume/Andy_Alexander_Resume.pdf" download>⬇ Download PDF</a>
+  </div>
+
+  <p class="lede">
+    Senior Linux systems engineer with 15+ years of hands-on production experience
+    spanning Linux, virtualization, networking, storage, web platforms, monitoring,
+    and automation. Enterprise background includes high-volume transactional email
+    infrastructure at Sendwell and globally distributed web infrastructure for
+    ESPN.com and ESPN3.com at The Walt Disney Company, covering VMware/Proxmox
+    virtualization, load balancing, configuration management, and multi-layer
+    production troubleshooting. Since 2022, has independently designed and operated
+    multi-site Linux infrastructure — Proxmox, ZFS, Docker, routing and firewall
+    policy, VPN, monitoring, and backup/recovery — documented as version-controlled
+    operational runbooks (see the <a href="/">homelab writeups</a>).
+  </p>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <span class="label">Linux &amp; Systems</span>
+        <span class="items">RHEL, CentOS, Debian, Ubuntu, systemd, Bash, performance troubleshooting, system hardening, service lifecycle management, FreeBSD, Windows Server</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Infrastructure &amp; Virtualization</span>
+        <span class="items">Proxmox VE, VMware ESXi, KVM, LXC, Docker &amp; Docker Compose, TrueNAS SCALE, high availability, capacity planning, incident response, root-cause analysis, lifecycle management, PCIe/SATA passthrough</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Automation &amp; Configuration Management</span>
+        <span class="items">Bash, Git/GitHub, API-driven automation, declarative configuration, systemd timers and cron, operational scripting, SaltStack, AI-assisted Python/Node.js scripting with human review and testing</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Networking</span>
+        <span class="items">TCP/IP, VLANs, IP subnetting, DNS/DHCP, routing, firewalls, NAT/nftables, WireGuard, OPNsense, MikroTik RouterOS, QoS/traffic shaping, tcpdump, Cisco IOS, F5 BIG-IP, OpenVPN, OSPF/MPLS troubleshooting exposure, Citrix NetScaler</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Storage &amp; Backup</span>
+        <span class="items">ZFS/RAIDZ, NFS, LVM, restic, automated backup and recovery, retention management, integrity verification, SMB, mdadm RAID</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Monitoring &amp; Observability</span>
+        <span class="items">Grafana, ELK/Elastic Stack, Uptime Kuma, Nagios, syslog/journalctl, alerting and escalation, performance monitoring, operational runbooks, NUT, Cacti</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Cloud</span>
+        <span class="items">Oracle Cloud Infrastructure — Ampere A1 ARM64 compute, VCN networking, security lists, public-facing and off-site services</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Web, Databases &amp; Applications</span>
+        <span class="items">Nginx, Apache, PostgreSQL, MySQL, high-volume MTA infrastructure, JBoss, GlassFish</span>
+      </div>
+      <div class="skill-row">
+        <span class="label">Security</span>
+        <span class="items">Linux hardening, SELinux/AppArmor, nftables/iptables, Fail2ban, PCI compliance, Nmap, Nessus, OpenBSD pf</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Infrastructure Engineer <span class="job-company">— Independent</span></span>
+        <span class="job-dates">2022 – Present</span>
+      </div>
+      <div class="job-location">Ormond Beach, FL</div>
+      <p style="font-size:0.92rem; margin:0 0 0.75rem;">
+        Design, build, operate, and document a multi-site Linux environment spanning
+        virtualization, storage, networking, monitoring, backup/recovery, and
+        containerized services. Architecture and operational procedures maintained
+        as version-controlled documentation at
+        <a href="https://github.com/greenbeanorg" style="color:var(--accent); text-decoration:none;">github.com/greenbeanorg</a>.
+      </p>
+      <ul>
+        <li>Designed and operate a multi-host Proxmox environment running Linux services, network infrastructure, storage, home automation, and application workloads across physical and virtual hosts.</li>
+        <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
+        <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud Infrastructure.</li>
+        <li>Built declarative monitoring automation on Uptime Kuma, with monitor definitions maintained as inventory and reconciled through API-driven provisioning across virtualization, storage, networking, DNS, and application services.</li>
+        <li>Deployed and operate multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
+        <li>Designed and deployed a WireGuard hub-and-spoke VPN connecting two sites and roaming clients through a cloud-hosted hub; implemented subnet routing and asymmetric NAT policy, and diagnosed tunnel bring-up failures using packet capture.</li>
+        <li>Operate OPNsense routing and firewall infrastructure with MikroTik switching; engineered WAN traffic shaping with pipes and queues to control bufferbloat, holding an A+ bufferbloat grade at ~361/317 Mbps with +0/+2 ms added latency under load.</li>
+        <li>Eliminated recurring ISP outages caused by a gateway firmware memory leak by replacing the vendor device with an XGS-PON ONT-on-a-stick SFP+ running community firmware as an early adopter; flashed the module, set OMCI identity via U-Boot variables, and validated PLOAM association and stable service.</li>
+        <li>Migrated an ARM single-board host from an orphaned vendor kernel to a maintained Armbian/Ubuntu stack after analyzing U-Boot boot-partition dependencies; deployed redundant Pi-hole DNS across independent failure domains, and standardized UPS monitoring on NUT in netserver/netclient architecture.</li>
+        <li>Author structured operational runbooks documenting architecture, design decisions, failure modes, recovery procedures, and verification steps, maintained under Git version control.</li>
+      </ul>
+      <div class="env-line"><strong>Environment:</strong> Linux, Proxmox VE, TrueNAS SCALE, ZFS, Docker Compose, OPNsense, MikroTik RouterOS, WireGuard, Armbian, restic, NUT, Uptime Kuma, Bash, Git, Oracle Cloud Infrastructure.</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Contract Systems Engineer <span class="job-company">— Sendwell, Inc.</span></span>
+        <span class="job-dates">2015 – 2022</span>
+      </div>
+      <div class="job-location">Bloomfield Hills, MI / Remote</div>
+      <ul>
+        <li>Provided intermittent, project-based infrastructure engineering and modernization for a high-volume email marketing platform, including production troubleshooting, upgrades, migrations, and infrastructure changes.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior Systems Engineer <span class="job-company">— Sendwell, Inc.</span></span>
+        <span class="job-dates">2013 – 2015</span>
+      </div>
+      <div class="job-location">Bloomfield Hills, MI</div>
+      <ul>
+        <li>Designed and operated high-volume transactional email infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
+        <li>Operated clustered mail infrastructure, 10GbE switching with static upstream routing, PostgreSQL services, and 40Gb InfiniBand-connected storage.</li>
+        <li>Built custom Nagios and Cacti monitoring covering more than 200 VMs across the physical host fleet, and automated backup workflows using rsync, shell scripting, and ghettoVCB against the ESXi CLI.</li>
+        <li>Implemented centralized ELK logging with Kibana dashboards for Apache/Nginx web infrastructure, enabling analysis of request traffic, source activity, and HTTP response patterns.</li>
+        <li>Managed core infrastructure services including OpenLDAP, DHCP, DNS/BIND, and office wireless infrastructure.</li>
+        <li>Maintained SaltStack configuration management and internal MediaWiki and RequestTracker infrastructure.</li>
+        <li>Troubleshot complex production incidents spanning operating system, network, storage, virtualization, and application layers.</li>
+      </ul>
+      <div class="env-line"><strong>Environment:</strong> Debian, Ubuntu, CentOS, VMware ESXi, Proxmox, PostgreSQL, OpenLDAP, BIND, InfiniBand, Nagios, Cacti, ELK, SaltStack, Bash.</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior Systems Engineer (contract) <span class="job-company">— ND Industries, Inc.</span></span>
+        <span class="job-dates">2012</span>
+      </div>
+      <div class="job-location">Troy, MI</div>
+      <ul>
+        <li>Led a mixed Linux/Windows Epicor ERP implementation and production rollout with emphasis on infrastructure readiness, monitoring, and operational documentation.</li>
+        <li>Implemented Nagios monitoring and authored comprehensive internal system procedures and documentation.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior Systems Engineer <span class="job-company">— The Walt Disney Company (ESPN)</span></span>
+        <span class="job-dates">2011</span>
+      </div>
+      <div class="job-location">Seattle, WA</div>
+      <ul>
+        <li>Supported application, load-balancing, and web infrastructure for ESPN.com and ESPN3.com using F5 BIG-IP and Red Hat clusters.</li>
+        <li>Completed a live data center migration of ESPN.com, ESPN3.com, and subsidiary properties.</li>
+        <li>Troubleshot production services under peak national traffic, including high-visibility ESPN.com services during NFL Sundays.</li>
+        <li>Administered and clustered Sun GlassFish Java application servers and performed capacity planning using SolarWinds.</li>
+        <li>Automated system configuration and enforced fleet consistency using CFEngine3.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Senior Systems Administrator <span class="job-company">— Entertainment Publications</span></span>
+        <span class="job-dates">2009 – 2011</span>
+      </div>
+      <div class="job-location">Troy, MI</div>
+      <ul>
+        <li>Maintained enterprise infrastructure across CentOS, SUSE Linux, and VMware ESXi supporting high-traffic web and application platforms.</li>
+        <li>Coordinated JBoss application-server optimization with senior software engineers and performed production deployments, configuration changes, and rollbacks.</li>
+        <li>Performed JMeter load testing of critical site workflows, including shopping-cart transactions, to identify performance bottlenecks and validate capacity.</li>
+        <li>Administered Apache web infrastructure including SSL/TLS configuration, and automated JBoss and Apache deployments with shell scripting alongside centralized monitoring.</li>
+        <li>Configured and supported Citrix NetScaler load balancing, including virtual servers, service groups, health monitoring, and traffic distribution.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Network Administrator <span class="job-company">— ND Industries, Inc.</span></span>
+        <span class="job-dates">2005 – 2009</span>
+      </div>
+      <div class="job-location">Troy, MI</div>
+      <ul>
+        <li>Supported a carrier-managed AT&amp;T MPLS WAN using OSPF across multiple satellite offices; troubleshot routing and connectivity on Cisco IOS in coordination with AT&amp;T.</li>
+        <li>Built and maintained OpenVPN remote access authenticated against RADIUS and LDAP.</li>
+        <li>Operated core Linux infrastructure on Gentoo and Ubuntu, including qmail/Courier-IMAP mail, BIND DNS, Apache hosting, Samba file services, MySQL, and Linux RAID storage.</li>
+        <li>Implemented company-wide Nagios monitoring and documented systems and projects using MediaWiki.</li>
+        <li>Co-engineered a low-cost storage array using ATA-over-Ethernet blades managed with Linux mdadm.</li>
+      </ul>
+    </div>
+
+    <p class="earlier">
+      <strong style="color:#fff;">Earlier career:</strong> Systems Analyst and Systems Administrator roles with
+      Ford Motor Company (via Ciber/NTT), Excite@Home, ClickAction (Yesmail), and regional ISPs.
+    </p>
+  </section>
+
+  <footer>
+    <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>
+    &nbsp;·&nbsp;
+    <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a>
+    &nbsp;·&nbsp;
+    Ormond Beach, FL — open to remote systems engineering roles
+  </footer>
+</main>
+</body>
+</html>

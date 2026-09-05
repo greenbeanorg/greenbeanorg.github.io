@@ -10,7 +10,32 @@
 <meta name="description" content="Multi-site homelab infrastructure, documented as production-style runbooks.">
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    flowchart: { useMaxWidth: false }
+  });
+
+  let scale = 1;
+  function getSvg() { return document.querySelector('.diagram-scroll svg'); }
+  function applyScale() {
+    const svg = getSvg();
+    if (svg) svg.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      scale = Math.min(scale + 0.2, 3);
+      applyScale();
+    });
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      scale = Math.max(scale - 0.2, 0.4);
+      applyScale();
+    });
+    document.getElementById('zoom-reset').addEventListener('click', () => {
+      scale = 1;
+      applyScale();
+    });
+  });
 </script>
 <style>
   :root {
@@ -113,8 +138,33 @@
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.2rem;
-    overflow-x: auto;
+    padding: 1rem;
+  }
+  .diagram-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .diagram-controls button {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .diagram-controls button:hover { border-color: var(--accent); color: var(--accent); }
+  .diagram-controls button.reset { width: auto; padding: 0 0.75rem; font-size: 0.8rem; }
+  .diagram-scroll {
+    overflow: auto;
+    max-height: 70vh;
+  }
+  .diagram-scroll svg {
+    transform-origin: top left;
+    transition: transform 0.15s ease;
   }
   footer {
     margin-top: 3rem;
@@ -144,6 +194,12 @@
   <section>
     <h2>Network at a glance</h2>
     <div class="diagram-panel">
+      <div class="diagram-controls">
+        <button id="zoom-out" title="Zoom out">−</button>
+        <button id="zoom-in" title="Zoom in">+</button>
+        <button id="zoom-reset" class="reset" title="Reset zoom">Reset</button>
+      </div>
+      <div class="diagram-scroll">
       <pre class="mermaid">
 flowchart TB
     INET((Internet<br/>XGS-PON Fiber))
@@ -189,6 +245,7 @@ flowchart TB
     ZOM --- RPX
     SWG -. restic over SFTP .- KK1
       </pre>
+      </div>
     </div>
   </section>
 

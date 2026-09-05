@@ -8,6 +8,10 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>greenbean.org — Andy Alexander's Homelab</title>
 <meta name="description" content="Multi-site homelab infrastructure, documented as production-style runbooks.">
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
 <style>
   :root {
     --bg: #0d1117;
@@ -105,6 +109,13 @@
   }
   .badge.done { background: rgba(63,185,80,0.15); color: var(--accent2); }
   .badge.progress { background: rgba(210,153,34,0.15); color: #d29922; }
+  .diagram-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    overflow-x: auto;
+  }
   footer {
     margin-top: 3rem;
     padding-top: 1.5rem;
@@ -131,12 +142,64 @@
   </p>
 
   <section>
+    <h2>Network at a glance</h2>
+    <div class="diagram-panel">
+      <pre class="mermaid">
+flowchart TB
+    INET((Internet<br/>XGS-PON Fiber))
+    ONT[XGS-PON ONT-on-a-stick<br/>SFP+ module]
+
+    subgraph SW [MikroTik CRS310-8G+2S+ — RouterOS]
+        BW[bridge-WAN<br/>SFP+ cage + 1 port]
+        BL[bridge-LAN<br/>remaining ports]
+    end
+
+    subgraph WU [wu — Proxmox host, ODROID-H3]
+        FW[OPNsense VM — Router / Firewall<br/>Kea DHCPv4 · option 6 hands out both resolvers<br/>WireGuard spoke]
+        PH2[pihole2 · LXC 1000<br/>Pi-hole, host install — <b>secondary DNS</b>]
+    end
+
+    PH1[pihole · ODROID-XU4<br/>Armbian 26.8 / kernel 6.6<br/>Pi-hole in Docker — <b>primary DNS</b>]
+
+    subgraph SWG [swearengen — Proxmox host, i5-10600K / 48GB]
+        NAS[TrueNAS SCALE VM<br/>ZFS RAIDZ1 pool — PCIe SATA passthrough]
+        FARN[farnum — Plex Media Server VM over NFS]
+        HA[Home Assistant VM]
+    end
+
+    CLIENTS[LAN clients]
+
+    KK1[kk1 · Oracle Cloud Ampere A1<br/>WireGuard hub — static public endpoint<br/>off-site restic target]
+
+    subgraph REMOTE [Remote Site]
+        ZOM[zombie · Debian VM<br/>WireGuard spoke + subnet router]
+        RPX[Remote Proxmox<br/>Pi-hole + LinuxGSM game server]
+    end
+
+    INET --- ONT --- BW
+    BW ---|"wu NIC 1 → WAN vNIC"| FW
+    FW ---|"LAN vNIC → wu NIC 2"| BL
+    BL --- CLIENTS
+    BL --- PH1
+    BL --- SWG
+    CLIENTS -. "resolver 1" .-> PH1
+    CLIENTS -. "resolver 2" .-> PH2
+    FW == "WireGuard" ==> KK1
+    ZOM == "WireGuard" ==> KK1
+    ZOM --- RPX
+    SWG -. restic over SFTP .- KK1
+      </pre>
+    </div>
+  </section>
+
+  <section>
     <h2>Repositories</h2>
     <div class="repo-grid">
       <a class="repo-card" href="https://github.com/greenbeanorg/homelab-docs">
         <div class="name">homelab-docs</div>
         <div class="desc">Runbooks and design docs: storage, backup, networking, power, DNS, services</div>
       </a>
+    </div>
   </section>
 
   <section>

@@ -11,18 +11,23 @@
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
-    startOnLoad: true,
-    theme: 'dark',
-    flowchart: { useMaxWidth: false }
+    startOnLoad: false,
+    theme: 'dark'
   });
 
-  let scale = 1;
+  let scale = 1.4; // single source of enlargement — applied on top of mermaid's normal fit-to-container render
   function getSvg() { return document.querySelector('.diagram-scroll svg'); }
   function applyScale() {
     const svg = getSvg();
     if (svg) svg.style.transform = `scale(${scale})`;
   }
-  window.addEventListener('DOMContentLoaded', () => {
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    await mermaid.run({ querySelector: '.mermaid' });
+    applyScale();
+    const scroller = document.querySelector('.diagram-scroll');
+    if (scroller) { scroller.scrollTop = 0; scroller.scrollLeft = 0; }
+
     document.getElementById('zoom-in').addEventListener('click', () => {
       scale = Math.min(scale + 0.2, 3);
       applyScale();
@@ -32,7 +37,7 @@
       applyScale();
     });
     document.getElementById('zoom-reset').addEventListener('click', () => {
-      scale = 1;
+      scale = 1.4;
       applyScale();
     });
   });

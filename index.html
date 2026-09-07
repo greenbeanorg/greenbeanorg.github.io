@@ -286,26 +286,27 @@ flowchart TB
   </section>
 
   <section>
-    <h2>Recently completed</h2>
-    <ul class="plain">
-      <li><span class="badge done">done</span>30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
-      <li><span class="badge done">done</span>Redundant Pi-hole DNS across two independent failure domains, advertised via Kea DHCPv4</li>
-      <li><span class="badge done">done</span>WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
-      <li><span class="badge done">done</span>Replaced ISP gateway with an XGS-PON ONT-on-a-stick running community firmware — eliminated a recurring outage</li>
-      <li><span class="badge done">done</span>Rebuilt an ARM single-board host off an orphaned vendor kernel onto maintained Armbian</li>
-    </ul>
-  </section>
+  <h2>Recently completed</h2>
+  <ul class="plain">
+    <li><span class="badge done">done</span>VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
+    <li><span class="badge done">done</span>First Terraform + Proxmox provisioning pass, deployed from a dedicated dev box</li>
+    <li><span class="badge done">done</span>Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
+    <li><span class="badge done">done</span>Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
+    <li><span class="badge done">done</span>Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
+    <li><span class="badge done">done</span>30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
+    <li><span class="badge done">done</span>WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>In progress</h2>
-    <ul class="plain">
-      <li><span class="badge progress">wip</span>Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
-      <li><span class="badge progress">wip</span>VLAN segmentation on the core switch, replacing a flat L2 network</li>
-      <li><span class="badge progress">wip</span>Off-site backup rebuild — reconstructing restic repository paths following the TrueNAS/ZFS migration</li>
-      <li><span class="badge progress">wip</span>Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
-      <li><span class="badge progress">wip</span>Terraform for declarative Proxmox VM provisioning</li>
-    </ul>
-  </section>
+<section>
+  <h2>In progress</h2>
+  <ul class="plain">
+    <li><span class="badge progress">wip</span>Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
+    <li><span class="badge progress">wip</span>Extending Terraform coverage across the rest of the Proxmox fleet</li>
+    <li><span class="badge progress">wip</span>Off-site backup rebuild — reconstructing restic repository paths following the TrueNAS/ZFS migration</li>
+    <li><span class="badge progress">wip</span>Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
+  </ul>
+</section>
 
   <footer>
     <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>

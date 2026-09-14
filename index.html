@@ -288,6 +288,11 @@ flowchart TB
   <section>
   <h2>Recently completed</h2>
   <ul class="plain">
+    <li><span class="badge done">done</span>Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
+    <li><span class="badge done">done</span>Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
+    <li><span class="badge done">done</span>Fixed TrueNAS's blank UPS reporting charts, caused by NUT running in netclient mode, with a config override and an init script that survives OS upgrades</li>
+    <li><span class="badge done">done</span>Fixed a metrics collector failing against the remote UPS monitoring server by switching to the host's native collector module</li>
+    <li><span class="badge done">done</span>Established NVMe and SMART health baselines across the Proxmox fleet's drives</li>
     <li><span class="badge done">done</span>Off-site backup rebuild — reconstructing restic repository paths following the TrueNAS/ZFS migration</li>
     <li><span class="badge done">done</span>VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
     <li><span class="badge done">done</span>First Terraform + Proxmox provisioning pass, deployed from a dedicated dev box</li>

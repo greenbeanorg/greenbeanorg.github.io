@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>greenbean.org — Andy Alexander — Linux Systems and Infrastructure</title>
-<meta name="description" content="Multi-site network infrastructure, documented as production-style runbooks.">
+<meta name="description" content="Linux systems administration and infrastructure engineering, documented as production-style runbooks from a real multi-site environment.">
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
@@ -142,6 +142,19 @@
   }
   .badge.done { background: rgba(63,185,80,0.15); color: var(--accent2); }
   .badge.progress { background: rgba(210,153,34,0.15); color: #d29922; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+  .skills-grid h3 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
   .diagram-panel {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -208,27 +221,67 @@
   <h1>greenbeanorg</h1>
   <div class="subtitle">Andy Alexander — Linux Systems and Infrastructure</div>
 
-  <section>
-    <h2>Repositories</h2>
-    <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/greenbeanorg/homelab-docs">
-        <div class="name">homelab-docs</div>
-        <div class="desc">Runbooks and design docs: storage, backup, networking, power, DNS, services</div>
-      </a>
-    </div>
-  </section>
-
   <p class="lede">
-    Multi-site network infrastructure, documented as production-style runbooks.
-    I'm a Linux systems engineer, and this is where I design, break, fix, and
-    document infrastructure. <strong>Everything here is real and running</strong> —
-    Proxmox across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing
-    over XGS-PON fiber, a WireGuard overlay network, redundant DNS, and
-    automated verified backups.
+    I'm a Linux systems engineer with 15+ years of production experience. Since 2022
+    I've run that same discipline at home: designing, breaking, fixing, and documenting
+    real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
+    across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
+    fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.
   </p>
 
   <section>
-    <h2>Network at a glance</h2>
+    <h2>What this demonstrates</h2>
+    <div class="skills-grid">
+      <div>
+        <h3>Linux systems administration</h3>
+        <ul class="plain">
+          <li>systemd service management &amp; troubleshooting</li>
+          <li>Package management, patching, OS upgrades</li>
+          <li>Filesystems, disks, users, groups, permissions</li>
+          <li>SSH, journald/log analysis, process &amp; resource triage</li>
+          <li>Backup, restore, and service recovery</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Infrastructure engineering</h3>
+        <ul class="plain">
+          <li>Virtualization — Proxmox, KVM/LXC</li>
+          <li>Networking, VLANs, firewalling, DNS/DHCP</li>
+          <li>Storage design — ZFS, RAID, NFS/SMB</li>
+          <li>Monitoring &amp; observability</li>
+          <li>Automation — Ansible, Terraform, Python/Bash</li>
+          <li>Incident response &amp; root-cause analysis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+  <h2>Selected work</h2>
+  <ul class="plain">
+    <li><span class="badge done">done</span>Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
+    <li><span class="badge done">done</span>Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
+    <li><span class="badge done">done</span>Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
+    <li><span class="badge done">done</span>VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
+    <li><span class="badge done">done</span>30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
+    <li><span class="badge done">done</span>WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
+    <li><span class="badge done">done</span>Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
+    <li><span class="badge done">done</span>Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Current work</h2>
+  <ul class="plain">
+    <li><span class="badge progress">wip</span>Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
+    <li><span class="badge progress">wip</span>Extending Terraform coverage across the rest of the Proxmox fleet</li>
+    <li><span class="badge progress">wip</span>Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
+    <li><span class="badge progress">wip</span>Rebuilding off-site restic backups following the TrueNAS/ZFS migration</li>
+  </ul>
+</section>
+
+  <section>
+    <h2>Infrastructure at a glance</h2>
     <div class="diagram-panel">
       <div class="diagram-controls">
         <button id="zoom-out" title="Zoom out">−</button>
@@ -286,32 +339,14 @@ flowchart TB
   </section>
 
   <section>
-  <h2>Recently completed</h2>
-  <ul class="plain">
-    <li><span class="badge done">done</span>Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
-    <li><span class="badge done">done</span>Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
-    <li><span class="badge done">done</span>Fixed TrueNAS's blank UPS reporting charts, caused by NUT running in netclient mode, with a config override and an init script that survives OS upgrades</li>
-    <li><span class="badge done">done</span>Fixed a metrics collector failing against the remote UPS monitoring server by switching to the host's native collector module</li>
-    <li><span class="badge done">done</span>Established NVMe and SMART health baselines across the Proxmox fleet's drives</li>
-    <li><span class="badge done">done</span>Off-site backup rebuild — reconstructing restic repository paths following the TrueNAS/ZFS migration</li>
-    <li><span class="badge done">done</span>VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
-    <li><span class="badge done">done</span>First Terraform + Proxmox provisioning pass, deployed from a dedicated dev box</li>
-    <li><span class="badge done">done</span>Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
-    <li><span class="badge done">done</span>Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
-    <li><span class="badge done">done</span>Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
-    <li><span class="badge done">done</span>30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
-    <li><span class="badge done">done</span>WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
-  </ul>
-</section>
-
-<section>
-  <h2>In progress</h2>
-  <ul class="plain">
-    <li><span class="badge progress">wip</span>Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
-    <li><span class="badge progress">wip</span>Extending Terraform coverage across the rest of the Proxmox fleet</li>
-    <li><span class="badge progress">wip</span>Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
-  </ul>
-</section>
+    <h2>Documentation</h2>
+    <div class="repo-grid">
+      <a class="repo-card" href="https://github.com/greenbeanorg/homelab-docs">
+        <div class="name">homelab-docs</div>
+        <div class="desc">23 runbooks, ~7,900 lines — each records what was built, why that approach, what broke, and how to rebuild it from nothing</div>
+      </a>
+    </div>
+  </section>
 
   <footer>
     <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>

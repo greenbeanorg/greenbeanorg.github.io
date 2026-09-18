@@ -3,322 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>greenbean.org — Andy Alexander — Linux Systems and Infrastructure</title>
 <meta name="description" content="Linux systems administration and infrastructure engineering, documented as production-style runbooks from a real multi-site environment.">
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'dark'
-  });
-
-  let scale = 1.4; // single source of enlargement — applied on top of mermaid's normal fit-to-container render
-  function getSvg() { return document.querySelector('.diagram-scroll svg'); }
-  function applyScale() {
-    const svg = getSvg();
-    if (svg) svg.style.transform = `scale(${scale})`;
-  }
-
-  window.addEventListener('DOMContentLoaded', async () => {
-    await mermaid.run({ querySelector: '.mermaid' });
-    applyScale();
-    const scroller = document.querySelector('.diagram-scroll');
-    if (scroller) { scroller.scrollTop = 0; scroller.scrollLeft = 0; }
-
-    document.getElementById('zoom-in').addEventListener('click', () => {
-      scale = Math.min(scale + 0.2, 3);
-      applyScale();
-    });
-    document.getElementById('zoom-out').addEventListener('click', () => {
-      scale = Math.max(scale - 0.2, 0.4);
-      applyScale();
-    });
-    document.getElementById('zoom-reset').addEventListener('click', () => {
-      scale = 1.4;
-      applyScale();
-    });
-  });
-</script>
 <style>
-  :root {
-    --bg: #0d1117;
-    --panel: #161b22;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --muted: #8b949e;
-    --accent: #58a6ff;
-    --accent2: #3fb950;
+  :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;--code-bg:#f6f8fa;}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#12141a;--fg:#e8e8e8;--muted:#aaa;--accent:#3ecf8e;--border:#333;--code-bg:#1c1f26;}
   }
-  * { box-sizing: border-box; }
-  html {
-    font-size: 17px;
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-  }
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
-  }
-  h1 {
-    font-size: 1.9rem;
-    margin-bottom: 0.2rem;
-    color: #fff;
-  }
-  .subtitle {
-    color: var(--muted);
-    margin-bottom: 2rem;
-    font-size: 1.05rem;
-  }
-  .lede {
-    font-size: 1.05rem;
-    margin-bottom: 2.5rem;
-  }
-  .lede strong { color: #fff; }
-  section { margin-bottom: 2.5rem; }
-  h2 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  .repo-grid {
-    display: grid;
-    gap: 0.75rem;
-  }
-  .repo-card {
-    display: block;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.15s ease;
-  }
-  .repo-card:hover { border-color: var(--accent); }
-  .repo-card .name {
-    color: var(--accent);
-    font-weight: 600;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  .repo-card .desc {
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin-top: 0.3rem;
-  }
-  ul.plain {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  ul.plain li {
-    padding: 0.4rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
-  }
-  ul.plain li:last-child { border-bottom: none; }
-  ul.plain a { color: var(--accent); text-decoration: none; }
-  ul.plain a:hover { text-decoration: underline; }
-  .badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-  }
-  .badge.done { background: rgba(63,185,80,0.15); color: var(--accent2); }
-  .badge.progress { background: rgba(210,153,34,0.15); color: #d29922; }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  @media (max-width: 600px) {
-    .skills-grid { grid-template-columns: 1fr; }
-  }
-  .skills-grid h3 {
-    font-size: 0.95rem;
-    color: #fff;
-    margin: 0 0 0.5rem;
-  }
-  .diagram-panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-  }
-  .diagram-controls {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-  .diagram-controls button {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 6px;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    line-height: 1;
-  }
-  .diagram-controls button:hover { border-color: var(--accent); color: var(--accent); }
-  .diagram-controls button.reset { width: auto; padding: 0 0.75rem; font-size: 0.8rem; }
-  .diagram-scroll {
-    overflow: auto;
-    max-height: 70vh;
-  }
-  .diagram-scroll svg {
-    transform-origin: top left;
-    transition: transform 0.15s ease;
-  }
-  footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-  nav.top {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1.25rem 1.5rem 0;
-    font-size: 0.9rem;
-  }
-  nav.top a {
-    color: var(--muted);
-    text-decoration: none;
-    margin-right: 1.25rem;
-  }
-  nav.top a.current { color: var(--accent); }
-  nav.top a:hover { color: var(--accent); }
+  body{background:var(--bg);color:var(--fg);font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:2rem 1.25rem;line-height:1.55;}
+  nav a{margin-right:1rem;color:var(--accent);text-decoration:none;}
+  nav a:hover{text-decoration:underline;}
+  h1{font-size:1.9rem;margin-bottom:.25rem;}
+  h2{font-size:1.3rem;border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-top:2rem;}
+  h3{font-size:1.05rem;margin-bottom:.4rem;}
+  .tagline{color:var(--muted);margin-top:0;}
+  ul{padding-left:1.2rem;}
+  li{margin:.3rem 0;}
+  .done::before{content:"✅ ";}
+  .wip::before{content:"🚧 ";}
+  .todo::before{content:"📋 ";}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;overflow-x:auto;font-size:.85rem;}
+  footer{margin-top:2.5rem;color:var(--muted);font-size:.9rem;}
+  footer a{color:var(--accent);}
 </style>
 </head>
 <body>
-<nav class="top">
-  <a href="/" class="current">Home</a>
-  <a href="/about/">About</a>
-  <a href="/resume/">Resume</a>
+
+<nav>
+  <a href="https://greenbean.org/">Home</a>
+  <a href="https://greenbean.org/about/">About</a>
+  <a href="https://greenbean.org/resume/">Resume</a>
 </nav>
-<main>
-  <h1>greenbeanorg</h1>
-  <div class="subtitle">Andy Alexander — Linux Systems and Infrastructure</div>
 
-  <p class="lede">
-    I'm a Linux systems professional with 20+ years of production experience. Since 2022
-    I've run that same discipline at home: designing, breaking, fixing, and documenting
-    real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
-    across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
-    fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.
-  </p>
+<h1>greenbeanorg</h1>
+<p class="tagline">Andy Alexander — Linux Systems and Infrastructure</p>
 
-  <section>
-    <h2>What this demonstrates</h2>
-    <div class="skills-grid">
-      <div>
-        <h3>Linux systems administration</h3>
-        <ul class="plain">
-          <li>systemd service management &amp; troubleshooting</li>
-          <li>Package management, patching, OS upgrades</li>
-          <li>Filesystems, disks, users, groups, permissions</li>
-          <li>SSH, journald/log analysis, process &amp; resource triage</li>
-          <li>Backup, restore, and service recovery</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Infrastructure engineering</h3>
-        <ul class="plain">
-          <li>Virtualization — Proxmox, KVM/LXC</li>
-          <li>Networking, VLANs, firewalling, DNS/DHCP</li>
-          <li>Storage design — ZFS, RAID, NFS/SMB</li>
-          <li>Monitoring &amp; observability</li>
-          <li>Automation — Ansible, Terraform, Python/Bash</li>
-          <li>Incident response &amp; root-cause analysis</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<p>I'm a Linux systems professional with 20+ years of production experience. Since 2022
+I've run that same discipline at home: designing, breaking, fixing, and documenting
+real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
+across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
+fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.</p>
 
-  <section>
-  <h2>Selected work</h2>
-  <ul class="plain">
-    <li><span class="badge done">done</span>Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
-    <li><span class="badge done">done</span>Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
-    <li><span class="badge done">done</span>Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
-    <li><span class="badge done">done</span>VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
-    <li><span class="badge done">done</span>30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
-    <li><span class="badge done">done</span>WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
-    <li><span class="badge done">done</span>Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
-    <li><span class="badge done">done</span>Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
-  </ul>
-</section>
+<h2>What this demonstrates</h2>
 
-<section>
-  <h2>Current work</h2>
-  <ul class="plain">
-    <li><span class="badge progress">wip</span>Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
-    <li><span class="badge progress">wip</span>Extending Terraform coverage across the rest of the Proxmox fleet</li>
-    <li><span class="badge progress">wip</span>Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
-    <li><span class="badge progress">wip</span>Rebuilding off-site restic backups following the TrueNAS/ZFS migration</li>
-  </ul>
-</section>
+<h3>Linux systems administration</h3>
+<ul>
+  <li>systemd service management &amp; troubleshooting</li>
+  <li>Package management, patching, OS upgrades</li>
+  <li>Filesystems, disks, users, groups, permissions</li>
+  <li>SSH, journald/log analysis, process &amp; resource triage</li>
+  <li>Backup, restore, and service recovery</li>
+</ul>
 
-  <section>
-    <h2>Infrastructure at a glance</h2>
-    <div class="diagram-panel">
-      <div class="diagram-controls">
-        <button id="zoom-out" title="Zoom out">−</button>
-        <button id="zoom-in" title="Zoom in">+</button>
-        <button id="zoom-reset" class="reset" title="Reset zoom">Reset</button>
-      </div>
-      <div class="diagram-scroll">
-      <pre class="mermaid">
+<h3>Infrastructure engineering</h3>
+<ul>
+  <li>Virtualization — Proxmox, KVM/LXC</li>
+  <li>Networking, VLANs, firewalling, DNS/DHCP</li>
+  <li>Storage design — ZFS, RAID, NFS/SMB</li>
+  <li>Monitoring &amp; observability</li>
+  <li>Automation — Ansible, Terraform, Python/Bash</li>
+  <li>Incident response &amp; root-cause analysis</li>
+</ul>
+
+<h2>Selected work</h2>
+<ul>
+  <li class="done">Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
+  <li class="done">Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
+  <li class="done">Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
+  <li class="done">VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
+  <li class="done">30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
+  <li class="done">WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
+  <li class="done">Automated restic backup pipeline across three Proxmox nodes, firewall infrastructure, and home automation — 90-day retention, scheduled integrity verification, off-site replication to Oracle Cloud</li>
+  <li class="done">Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
+  <li class="done">Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
+</ul>
+
+<h2>Current work</h2>
+<ul>
+  <li class="wip">Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
+</ul>
+
+<h2>Planned</h2>
+<ul>
+  <li class="todo">Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
+  <li class="todo">Terraform coverage across the rest of the Proxmox fleet</li>
+</ul>
+
+<h2>Infrastructure at a glance</h2>
+<!-- If your live template renders this via Mermaid.js, drop the fenced block straight into your existing <pre class="mermaid"> setup. Left as plain text here since I don't have your actual page's script tags. -->
+<pre>
 flowchart TB
-    INET((Internet<br/>XGS-PON Fiber))
-    ONT[XGS-PON ONT-on-a-stick<br/>SFP+ module]
+    INET((Internet
+XGS-PON Fiber))
+    ONT[XGS-PON ONT-on-a-stick
+SFP+ module]
 
     subgraph SW [MikroTik CRS310-8G+2S+ — RouterOS]
-        BW[bridge-WAN<br/>SFP+ cage + 1 port]
-        BL[bridge-LAN<br/>remaining ports]
+        BW[bridge-WAN
+SFP+ cage + 1 port]
+        BL[bridge-LAN
+remaining ports]
     end
 
     subgraph WU [wu — Proxmox host, ODROID-H3]
-        FW[OPNsense VM — Router / Firewall<br/>Kea DHCPv4 · option 6 hands out both resolvers<br/>WireGuard spoke]
-        PH2[pihole2 · LXC 1000<br/>Pi-hole, host install — <b>secondary DNS</b>]
+        FW[OPNsense VM — Router / Firewall
+Kea DHCPv4 · option 6 hands out both resolvers
+WireGuard spoke]
+        PH2[pihole2 · LXC 1000
+Pi-hole, host install — secondary DNS]
     end
 
-    PH1[pihole · ODROID-XU4<br/>Armbian 26.8 / kernel 6.6<br/>Pi-hole in Docker — <b>primary DNS</b>]
+    PH1[pihole · ODROID-XU4
+Armbian 26.8 / kernel 6.6
+Pi-hole in Docker — primary DNS]
 
     subgraph SWG [swearengen — Proxmox host, i5-10600K / 48GB]
-        NAS[TrueNAS SCALE VM<br/>ZFS RAIDZ1 pool — PCIe SATA passthrough]
+        NAS[TrueNAS SCALE VM
+ZFS RAIDZ1 pool — PCIe SATA passthrough]
         FARN[farnum — Plex Media Server VM over NFS]
         HA[Home Assistant VM]
     end
 
     CLIENTS[LAN clients]
 
-    KK1[kk1 · Oracle Cloud Ampere A1<br/>WireGuard hub — static public endpoint<br/>off-site restic target]
+    KK1[kk1 · Oracle Cloud Ampere A1
+WireGuard hub — static public endpoint
+off-site restic target]
 
     subgraph REMOTE [Remote Site]
-        ZOM[zombie · Debian VM<br/>WireGuard spoke + subnet router]
-        RPX[Remote Proxmox<br/>Pi-hole + LinuxGSM game server]
+        ZOM[zombie · Debian VM
+WireGuard spoke + subnet router]
+        RPX[Remote Proxmox
+Pi-hole + LinuxGSM game server]
     end
 
     INET --- ONT --- BW
@@ -333,30 +149,17 @@ flowchart TB
     ZOM == "WireGuard" ==> KK1
     ZOM --- RPX
     SWG -. restic over SFTP .- KK1
-      </pre>
-      </div>
-    </div>
-  </section>
+</pre>
 
-  <section>
-    <h2>Documentation</h2>
-    <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/greenbeanorg/homelab-docs">
-        <div class="name">homelab-docs</div>
-        <div class="desc">23 runbooks, ~7,900 lines — each records what was built, why that approach, what broke, and how to rebuild it from nothing</div>
-      </a>
-    </div>
-  </section>
+<h2>Documentation</h2>
+<p><a href="https://github.com/greenbeanorg/homelab-docs">homelab-docs — 23 runbooks, ~7,900 lines — each records what was built, why that approach, what broke, and how to rebuild it from nothing</a></p>
 
-  <footer>
-    <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>
-    &nbsp;·&nbsp;
-    <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a>
-    &nbsp;·&nbsp;
-    <a href="/resume/">Resume</a>
-    &nbsp;·&nbsp;
-    Ormond Beach, FL — open to remote Linux systems administration / systems engineering roles
-  </footer>
-</main>
+<footer>
+  <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a> ·
+  <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a> ·
+  <a href="https://greenbean.org/resume/">Resume</a> ·
+  Ormond Beach, FL — open to remote Linux systems administration / systems engineering roles
+</footer>
+
 </body>
 </html>

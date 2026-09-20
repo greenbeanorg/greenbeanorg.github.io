@@ -45,6 +45,11 @@ real infrastructure. <strong>Everything here is real and running</strong> — Pr
 across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
 fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.</p>
 
+<p><strong>Live right now:</strong> <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> —
+a Postgres-backed app on a 3-node k3s cluster, provisioned by Terraform + Ansible,
+monitored by Icinga2, and served over a self-managed Nginx/Let's Encrypt reverse proxy.
+Open it, add a task, watch the status panel in the corner.</p>
+
 <h2>What this demonstrates</h2>
 
 <h3>Linux systems administration</h3>
@@ -58,16 +63,18 @@ fiber, a WireGuard overlay network, redundant DNS, and automated verified backup
 
 <h3>Infrastructure engineering</h3>
 <ul>
-  <li>Virtualization — Proxmox, KVM/LXC</li>
+  <li>Virtualization — Proxmox, KVM/LXC, Kubernetes (k3s)</li>
   <li>Networking, VLANs, firewalling, DNS/DHCP</li>
   <li>Storage design — ZFS, RAID, NFS/SMB</li>
-  <li>Monitoring &amp; observability</li>
-  <li>Automation — Ansible, Terraform, Python/Bash</li>
+  <li>Monitoring &amp; observability — Icinga2, Uptime Kuma</li>
+  <li>Automation — Terraform, Ansible, Python/Bash</li>
   <li>Incident response &amp; root-cause analysis</li>
 </ul>
 
 <h2>Selected work</h2>
 <ul>
+  <li class="done">Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application exposed publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> over a self-managed Nginx/Let's Encrypt reverse proxy</li>
+  <li class="done">Diagnosed and resolved cross-stack failures spanning a Kubernetes scheduler deadlock under strict topology-spread constraints, a kubelet crash loop tied to Linux user-namespace device restrictions, and a Postgres privilege-scoping gap silently blocking application writes</li>
   <li class="done">Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
   <li class="done">Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
   <li class="done">Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
@@ -86,8 +93,8 @@ fiber, a WireGuard overlay network, redundant DNS, and automated verified backup
 
 <h2>Planned</h2>
 <ul>
-  <li class="todo">Ansible fleet management — baseline, NUT, restic, and Docker host roles</li>
-  <li class="todo">Terraform coverage across the rest of the Proxmox fleet</li>
+  <li class="todo">Extend Ansible fleet roles — baseline, NUT, restic, and Docker host roles — to swearengen and wu</li>
+  <li class="todo">Extend Terraform coverage to the rest of the Proxmox fleet</li>
 </ul>
 
 <h2>Infrastructure at a glance</h2>

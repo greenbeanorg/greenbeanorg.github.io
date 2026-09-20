@@ -57,14 +57,14 @@ operational runbooks (see the <a href="https://greenbean.org/">homelab writeups<
 <h2>Technical Skills</h2>
 <ul>
   <li><span class="skill-cat">Linux &amp; Systems:</span> RHEL, CentOS, Debian, Ubuntu, systemd, Bash, performance troubleshooting, system hardening, service lifecycle management, FreeBSD, Windows Server</li>
-  <li><span class="skill-cat">Infrastructure &amp; Virtualization:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker &amp; Docker Compose, TrueNAS SCALE, high availability, capacity planning, incident response, root-cause analysis, lifecycle management, PCIe/SATA passthrough</li>
-  <li><span class="skill-cat">Automation &amp; Configuration Management:</span> Bash, Git/GitHub, API-driven automation, declarative configuration, systemd timers and cron, operational scripting, SaltStack, Python</li>
+  <li><span class="skill-cat">Infrastructure &amp; Virtualization:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker &amp; Docker Compose, Kubernetes (k3s), TrueNAS SCALE, high availability, capacity planning, incident response, root-cause analysis, lifecycle management, PCIe/SATA passthrough</li>
+  <li><span class="skill-cat">Automation &amp; Configuration Management:</span> Terraform, Ansible, Bash, Git/GitHub, API-driven automation, declarative configuration, systemd timers and cron, operational scripting, SaltStack, Python</li>
   <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, IP subnetting, DNS/DHCP, routing, firewalls, NAT/nftables, WireGuard, OPNsense, MikroTik RouterOS, QoS/traffic shaping, tcpdump, Cisco IOS, F5 BIG-IP, OpenVPN, OSPF/MPLS troubleshooting exposure, Citrix NetScaler</li>
   <li><span class="skill-cat">Storage &amp; Backup:</span> ZFS/RAIDZ, NFS, LVM, restic, automated backup and recovery, retention management, integrity verification, SMB, mdadm RAID</li>
-  <li><span class="skill-cat">Monitoring &amp; Observability:</span> Grafana, ELK/Elastic Stack, Uptime Kuma, Nagios, syslog/journalctl, alerting and escalation, performance monitoring, operational runbooks, NUT, Cacti</li>
+  <li><span class="skill-cat">Monitoring &amp; Observability:</span> Grafana, ELK/Elastic Stack, Uptime Kuma, Nagios, Icinga2, syslog/journalctl, alerting and escalation, performance monitoring, operational runbooks, NUT, Cacti</li>
   <li><span class="skill-cat">Cloud:</span> Oracle Cloud Infrastructure — Ampere A1 ARM64 compute, VCN networking, security lists, public-facing and off-site services</li>
   <li><span class="skill-cat">Web, Databases &amp; Applications:</span> Nginx, Apache, PostgreSQL, MySQL, high-volume MTA infrastructure, JBoss, GlassFish</li>
-  <li><span class="skill-cat">Security:</span> Linux hardening, SELinux/AppArmor, nftables/iptables, Fail2ban, PCI compliance, Nmap, Nessus, OpenBSD pf</li>
+  <li><span class="skill-cat">Security:</span> Linux hardening, SELinux/AppArmor, nftables/iptables, Fail2ban, Let's Encrypt/certbot, Kubernetes RBAC, PCI compliance, Nmap, Nessus, OpenBSD pf</li>
 </ul>
 
 <h2>Professional Experience</h2>
@@ -76,18 +76,20 @@ virtualization, storage, networking, monitoring, backup/recovery, and
 containerized services. Architecture and operational procedures maintained
 as version-controlled documentation at <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>.</p>
 <ul>
-  <li>Designed and operate a multi-host Proxmox environment running Linux services, network infrastructure, storage, home automation, and application workloads across physical and virtual hosts.</li>
-  <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
+  <li>Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application with topology-aware pod scheduling and RBAC-scoped service accounts.</li>
+  <li>Diagnosed and resolved cross-stack failures spanning a Kubernetes scheduler deadlock, a kubelet crash loop from Linux user-namespace restrictions, and a PostgreSQL privilege-scoping gap masking application errors.</li>
+  <li>Exposed the application securely to the public internet at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx reverse proxy with automated Let's Encrypt TLS and rate limiting, tunneled to the home network over an existing WireGuard link rather than direct port exposure.</li>
   <li>Designed and operate a segmented multi-VLAN network using OPNsense for inter-VLAN routing and firewall policy, with MikroTik switching and controlled connectivity between infrastructure, storage, service, and client networks; engineered WAN traffic shaping with pipes and queues to control bufferbloat, holding an A+ grade at ~361/317 Mbps with +0/+2 ms added latency under load.</li>
   <li>Designed and deployed a WireGuard hub-and-spoke VPN connecting two sites and roaming clients through a cloud-hosted hub; implemented subnet routing and asymmetric NAT policy, and diagnosed tunnel bring-up failures using packet capture.</li>
+  <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
+  <li>Author structured operational runbooks documenting architecture, design decisions, failure modes, recovery procedures, and verification steps, maintained under Git version control.</li>
   <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud Infrastructure.</li>
   <li>Built declarative monitoring automation on Uptime Kuma, with monitor definitions maintained as inventory and reconciled through API-driven provisioning across virtualization, storage, networking, DNS, and application services.</li>
-  <li>Eliminated recurring ISP outages caused by a gateway firmware memory leak by replacing the vendor device with an XGS-PON ONT-on-a-stick SFP+ running community firmware as an early adopter; flashed the module, set OMCI identity via U-Boot variables, and validated PLOAM association and stable service.</li>
-  <li>Migrated an ARM single-board host from an orphaned vendor kernel to a maintained Armbian/Ubuntu stack after analyzing U-Boot boot-partition dependencies; deployed redundant Pi-hole DNS across independent failure domains, and standardized UPS monitoring on NUT in netserver/netclient architecture.</li>
+  <li>Diagnosed and resolved a recurring ISP gateway firmware fault via community SFP+ ONT firmware, and modernized an orphaned ARM single-board host onto a maintained OS after boot-dependency analysis.</li>
   <li>Deployed and operate multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
-  <li>Author structured operational runbooks documenting architecture, design decisions, failure modes, recovery procedures, and verification steps, maintained under Git version control.</li>
+  <li>Designed and operate a multi-host Proxmox environment running Linux services, network infrastructure, storage, home automation, and application workloads across physical and virtual hosts.</li>
 </ul>
-<p class="env"><strong>Environment:</strong> Linux, Proxmox VE, TrueNAS SCALE, ZFS, Docker Compose, OPNsense, MikroTik RouterOS, WireGuard, Armbian, restic, NUT, Uptime Kuma, Bash, Git, Oracle Cloud Infrastructure.</p>
+<p class="env"><strong>Environment:</strong> Terraform, Kubernetes (k3s), Nginx, Let's Encrypt, Linux, Proxmox VE, TrueNAS SCALE, ZFS, Docker Compose, OPNsense, MikroTik RouterOS, WireGuard, Armbian, restic, NUT, Uptime Kuma, Bash, Git, Oracle Cloud Infrastructure.</p>
 
 <h3>Contract Systems Engineer — Sendwell, Inc.</h3>
 <p class="role-meta">2015 – 2022 · Bloomfield Hills, MI / Remote</p>

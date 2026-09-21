@@ -78,18 +78,16 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
 <ul>
   <li>Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application with topology-aware pod scheduling and RBAC-scoped service accounts.</li>
   <li>Diagnosed and resolved cross-stack failures spanning a Kubernetes scheduler deadlock, a kubelet crash loop from Linux user-namespace restrictions, and a PostgreSQL privilege-scoping gap masking application errors.</li>
-  <li>Exposed the application securely to the public internet at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx reverse proxy with automated Let's Encrypt TLS and rate limiting, tunneled to the home network over an existing WireGuard link rather than direct port exposure.</li>
+  <li>Exposed the application securely to the public internet at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx reverse proxy with automated Let's Encrypt TLS and rate limiting, tunneled to the home network over an existing WireGuard link rather than direct port exposure, with least-privilege API credentials and custom Icinga2 SQL-based health checks.</li>
   <li>Designed and operate a segmented multi-VLAN network using OPNsense for inter-VLAN routing and firewall policy, with MikroTik switching and controlled connectivity between infrastructure, storage, service, and client networks; engineered WAN traffic shaping with pipes and queues to control bufferbloat, holding an A+ grade at ~361/317 Mbps with +0/+2 ms added latency under load.</li>
   <li>Designed and deployed a WireGuard hub-and-spoke VPN connecting two sites and roaming clients through a cloud-hosted hub; implemented subnet routing and asymmetric NAT policy, and diagnosed tunnel bring-up failures using packet capture.</li>
   <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
   <li>Author structured operational runbooks documenting architecture, design decisions, failure modes, recovery procedures, and verification steps, maintained under Git version control.</li>
   <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud Infrastructure.</li>
   <li>Built declarative monitoring automation on Uptime Kuma, with monitor definitions maintained as inventory and reconciled through API-driven provisioning across virtualization, storage, networking, DNS, and application services.</li>
-  <li>Diagnosed and resolved a recurring ISP gateway firmware fault via community SFP+ ONT firmware, and modernized an orphaned ARM single-board host onto a maintained OS after boot-dependency analysis.</li>
   <li>Deployed and operate multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
   <li>Designed and operate a multi-host Proxmox environment running Linux services, network infrastructure, storage, home automation, and application workloads across physical and virtual hosts.</li>
 </ul>
-<p class="env"><strong>Environment:</strong> Terraform, Kubernetes (k3s), Nginx, Let's Encrypt, Linux, Proxmox VE, TrueNAS SCALE, ZFS, Docker Compose, OPNsense, MikroTik RouterOS, WireGuard, Armbian, restic, NUT, Uptime Kuma, Bash, Git, Oracle Cloud Infrastructure.</p>
 
 <h3>Contract Systems Engineer — Sendwell, Inc.</h3>
 <p class="role-meta">2015 – 2022 · Bloomfield Hills, MI / Remote</p>
@@ -109,7 +107,6 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
   <li>Maintained SaltStack configuration management and internal MediaWiki and RequestTracker infrastructure.</li>
   <li>Troubleshot complex production incidents spanning operating system, network, storage, virtualization, and application layers.</li>
 </ul>
-<p class="env"><strong>Environment:</strong> Debian, Ubuntu, CentOS, VMware ESXi, Proxmox, PostgreSQL, OpenLDAP, BIND, InfiniBand, Nagios, Cacti, ELK, SaltStack, Bash.</p>
 
 <h3>Senior Systems Engineer (contract) — ND Industries, Inc.</h3>
 <p class="role-meta">2012 · Troy, MI</p>
@@ -132,6 +129,7 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
 <p class="role-meta">2009 – 2011 · Troy, MI</p>
 <ul>
   <li>Maintained enterprise infrastructure across CentOS, SUSE Linux, and VMware ESXi supporting high-traffic web and application platforms.</li>
+  <li>Used Jenkins/Hudson to build and promote Java WAR packages through dev/UAT/production for JBoss deployment, with post-deployment verification via Nagios synthetic checks.</li>
   <li>Coordinated JBoss application-server optimization with senior software engineers and performed production deployments, configuration changes, and rollbacks.</li>
   <li>Performed JMeter load testing of critical site workflows, including shopping-cart transactions, to identify performance bottlenecks and validate capacity.</li>
   <li>Administered Apache web infrastructure including SSL/TLS configuration, and automated JBoss and Apache deployments with shell scripting alongside centralized monitoring.</li>
@@ -145,7 +143,6 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
   <li>Built and maintained OpenVPN remote access authenticated against RADIUS and LDAP.</li>
   <li>Operated core Linux infrastructure on Gentoo and Ubuntu, including qmail/Courier-IMAP mail, BIND DNS, Apache hosting, Samba file services, MySQL, and Linux RAID storage.</li>
   <li>Implemented company-wide Nagios monitoring and documented systems and projects using MediaWiki.</li>
-  <li>Co-engineered a low-cost storage array using ATA-over-Ethernet blades managed with Linux mdadm.</li>
 </ul>
 
 <p><strong>Earlier career (1996–2005):</strong> Systems Administrator and Systems Analyst roles with

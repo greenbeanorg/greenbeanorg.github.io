@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume — Andy Alexander</title>
-<meta name="description" content="Andy Alexander — Linux Systems Engineer, Linux Systems Administrator. 20+ years across Linux, virtualization, networking, storage, and automation.">
+<meta name="description" content="Andy Alexander — Senior Linux / Infrastructure Engineer. 20+ years running, troubleshooting, and automating production infrastructure.">
 <style>
   :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;}
   @media (prefers-color-scheme: dark){
@@ -36,60 +36,49 @@
 </nav>
 
 <h1>Andy Alexander</h1>
-<p class="subtitle">Linux Systems and Infrastructure</p>
+<p class="subtitle">Senior Linux / Infrastructure Engineer</p>
 <p class="contact">
   Ormond Beach, FL (open to remote) ·
   <a href="https://linkedin.com/in/andy-alexander-linux">linkedin.com/in/andy-alexander-linux</a> ·
   <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>
 </p>
 
-<p>Linux systems professional with 20+ years of hands-on production experience
-spanning Linux, virtualization, networking, storage, web platforms, monitoring,
-and automation. Enterprise background includes high-volume transactional email
-infrastructure at Sendwell and globally distributed web infrastructure for
-ESPN.com and ESPN3.com at The Walt Disney Company, covering VMware/Proxmox
-virtualization, load balancing, configuration management, and multi-layer
-production troubleshooting. Since 2022, has independently designed and operated
-multi-site Linux infrastructure — Proxmox, ZFS, Docker, routing and firewall
-policy, VPN, monitoring, and backup/recovery — documented as version-controlled
-operational runbooks (see the <a href="https://greenbean.org/">homelab writeups</a>).</p>
+<h2>Summary</h2>
+<p>Senior Linux / infrastructure engineer with 20+ years running, troubleshooting,
+and automating production infrastructure, including high-volume platforms at
+Sendwell and ESPN. Since 2022, have built and operated multi-site infrastructure
+using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
 
-<h2>Technical Skills</h2>
+<h2>Core Competencies</h2>
 <ul>
-  <li><span class="skill-cat">Linux &amp; Systems:</span> RHEL, CentOS, Debian, Ubuntu, systemd, Bash, performance troubleshooting, system hardening, service lifecycle management, FreeBSD, Windows Server</li>
-  <li><span class="skill-cat">Infrastructure &amp; Virtualization:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker &amp; Docker Compose, Kubernetes (k3s), TrueNAS SCALE, high availability, capacity planning, incident response, root-cause analysis, lifecycle management, PCIe/SATA passthrough</li>
-  <li><span class="skill-cat">Automation &amp; Configuration Management:</span> Terraform, Ansible, Bash, Git/GitHub, API-driven automation, declarative configuration, systemd timers and cron, operational scripting, SaltStack, Python</li>
-  <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, IP subnetting, DNS/DHCP, routing, firewalls, NAT/nftables, WireGuard, OPNsense, MikroTik RouterOS, QoS/traffic shaping, tcpdump, Cisco IOS, F5 BIG-IP, OpenVPN, OSPF/MPLS troubleshooting exposure, Citrix NetScaler</li>
-  <li><span class="skill-cat">Storage &amp; Backup:</span> ZFS/RAIDZ, NFS, LVM, restic, automated backup and recovery, retention management, integrity verification, SMB, mdadm RAID</li>
-  <li><span class="skill-cat">Monitoring &amp; Observability:</span> Grafana, ELK/Elastic Stack, Uptime Kuma, Nagios, Icinga2, syslog/journalctl, alerting and escalation, performance monitoring, operational runbooks, NUT, Cacti</li>
-  <li><span class="skill-cat">Cloud:</span> Oracle Cloud Infrastructure — Ampere A1 ARM64 compute, VCN networking, security lists, public-facing and off-site services</li>
-  <li><span class="skill-cat">Web, Databases &amp; Applications:</span> Nginx, Apache, PostgreSQL, MySQL, high-volume MTA infrastructure, JBoss, GlassFish</li>
-  <li><span class="skill-cat">Security:</span> Linux hardening, SELinux/AppArmor, nftables/iptables, Fail2ban, Let's Encrypt/certbot, Kubernetes RBAC, PCI compliance, Nmap, Nessus, OpenBSD pf</li>
+  <li><span class="skill-cat">Linux &amp; Unix:</span> RHEL, CentOS, Debian, Ubuntu, FreeBSD, OpenBSD, Bash, systemd, SSH, package/software lifecycle, log analysis, troubleshooting; earlier career: Solaris, AIX, HP-UX</li>
+  <li><span class="skill-cat">Automation &amp; Infrastructure as Code:</span> Terraform, Ansible, SaltStack, Git/GitHub, Bash, Python, Jenkins/Hudson (CI)</li>
+  <li><span class="skill-cat">Virtualization, Containers &amp; Cloud:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker, Kubernetes (k3s), Oracle Cloud Infrastructure (OCI)</li>
+  <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, inter-VLAN routing, OSPF, MPLS, DNS/DHCP (BIND, Unbound), OPNsense, MikroTik RouterOS, Cisco IOS, WireGuard, OpenVPN, F5 BIG-IP, Citrix NetScaler, QoS/traffic shaping, tcpdump</li>
+  <li><span class="skill-cat">Storage &amp; Backup:</span> ZFS, TrueNAS SCALE, mdadm RAID, LVM, NFS, SMB, restic, rsync, backup verification and recovery</li>
+  <li><span class="skill-cat">Monitoring &amp; Observability:</span> Nagios, Icinga2, Grafana, ELK/Elastic Stack, Cacti, Uptime Kuma, syslog/journalctl, incident response, root-cause analysis</li>
+  <li><span class="skill-cat">Security &amp; Compliance:</span> Linux/BSD hardening, SSH bastion design, iptables/nftables, pf, Fail2ban, SELinux/AppArmor, TLS/Let's Encrypt, PCI compliance, Nessus, Nmap</li>
+  <li><span class="skill-cat">Web &amp; Data Platforms:</span> Apache, Nginx, PostgreSQL, MySQL, OpenLDAP, JBoss, GlassFish</li>
 </ul>
 
 <h2>Professional Experience</h2>
 
-<h3>Independent Infrastructure Projects — Self-Directed</h3>
+<h3>Independent Infrastructure Engineering — Self-Directed</h3>
 <p class="role-meta">2022 – Present · Ormond Beach, FL</p>
-<p>Design, build, operate, and document a multi-site Linux environment spanning
-virtualization, storage, networking, monitoring, backup/recovery, and
-containerized services. Architecture and operational procedures maintained
-as version-controlled documentation at <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a>.</p>
 <ul>
-  <li>Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application with topology-aware pod scheduling and RBAC-scoped service accounts.</li>
-  <li>Diagnosed and resolved cross-stack failures spanning a Kubernetes scheduler deadlock, a kubelet crash loop from Linux user-namespace restrictions, and a PostgreSQL privilege-scoping gap masking application errors.</li>
-  <li>Exposed the application securely to the public internet at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx reverse proxy with automated Let's Encrypt TLS and rate limiting, tunneled to the home network over an existing WireGuard link rather than direct port exposure, with least-privilege API credentials and custom Icinga2 SQL-based health checks.</li>
+  <li>Designed and operate a multi-site, multi-host Proxmox environment running Linux services, network infrastructure, storage, and public-facing application workloads, provisioned and configured through Terraform, Ansible, and Git.</li>
+  <li>Provisioned a 3-node k3s cluster with supporting PostgreSQL and Icinga2 hosts via Terraform and Ansible, hosting a Flask/PostgreSQL application.</li>
+  <li>Exposed the application publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx/Let's Encrypt reverse proxy on an Oracle Cloud Infrastructure host, tunneled over an existing WireGuard link, with rate limiting, least-privilege API credentials, and custom Icinga2 SQL-based health checks.</li>
   <li>Designed and operate a segmented multi-VLAN network using OPNsense for inter-VLAN routing and firewall policy, with MikroTik switching and controlled connectivity between infrastructure, storage, service, and client networks; engineered WAN traffic shaping with pipes and queues to control bufferbloat, holding an A+ grade at ~361/317 Mbps with +0/+2 ms added latency under load.</li>
   <li>Designed and deployed a WireGuard hub-and-spoke VPN connecting two sites and roaming clients through a cloud-hosted hub; implemented subnet routing and asymmetric NAT policy, and diagnosed tunnel bring-up failures using packet capture.</li>
   <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
-  <li>Author structured operational runbooks documenting architecture, design decisions, failure modes, recovery procedures, and verification steps, maintained under Git version control.</li>
-  <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud Infrastructure.</li>
+  <li>Maintain infrastructure documentation covering architecture, configuration, recovery procedures, and verification, under Git version control.</li>
+  <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud.</li>
   <li>Built declarative monitoring automation on Uptime Kuma, with monitor definitions maintained as inventory and reconciled through API-driven provisioning across virtualization, storage, networking, DNS, and application services.</li>
-  <li>Deployed and operate multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
-  <li>Designed and operate a multi-host Proxmox environment running Linux services, network infrastructure, storage, home automation, and application workloads across physical and virtual hosts.</li>
+  <li>Deployed and operated multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
 </ul>
 
-<h3>Contract Systems Engineer — Sendwell, Inc.</h3>
+<h3>Contract Systems Engineer (project-based) — Sendwell, Inc.</h3>
 <p class="role-meta">2015 – 2022 · Bloomfield Hills, MI / Remote</p>
 <ul>
   <li>Provided intermittent, project-based infrastructure engineering and modernization for a high-volume email marketing platform, including production troubleshooting, upgrades, migrations, and infrastructure changes.</li>
@@ -98,37 +87,34 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
 <h3>Senior Systems Engineer — Sendwell, Inc.</h3>
 <p class="role-meta">2013 – 2015 · Bloomfield Hills, MI / Hybrid (remote ~3 days/week)</p>
 <ul>
-  <li>Designed and operated high-volume transactional email infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
+  <li>Operated, optimized, and troubleshot high-volume transactional email infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
   <li>Operated clustered mail infrastructure, 10GbE switching with static upstream routing, PostgreSQL services, and 40Gb InfiniBand-connected storage.</li>
+  <li>Built custom Nagios and Cacti monitoring covering 200+ VMs and automated backup pipelines using rsync, shell scripting, and ghettoVCB against the ESXi CLI.</li>
+  <li>Implemented centralized ELK logging and Kibana dashboards for Apache/Nginx infrastructure to analyze request traffic, source activity, HTTP response patterns, and application behavior.</li>
   <li>Migrated production virtual machines from VMware ESXi to Proxmox by exporting VMDK images and reconfiguring networking and service configuration on the new platform.</li>
-  <li>Built custom Nagios and Cacti monitoring covering more than 200 VMs across the physical host fleet, and automated backup workflows using rsync, shell scripting, and ghettoVCB against the ESXi CLI.</li>
-  <li>Implemented centralized ELK logging with Kibana dashboards for Apache/Nginx web infrastructure, enabling analysis of request traffic, source activity, and HTTP response patterns.</li>
-  <li>Managed core infrastructure services including OpenLDAP, DHCP, DNS/BIND, and office wireless infrastructure.</li>
-  <li>Maintained SaltStack configuration management and internal MediaWiki and RequestTracker infrastructure.</li>
-  <li>Troubleshot complex production incidents spanning operating system, network, storage, virtualization, and application layers.</li>
+  <li>Managed OpenLDAP, DHCP, BIND DNS, and office infrastructure; maintained SaltStack configuration management and internal documentation/ticketing through MediaWiki and RequestTracker.</li>
 </ul>
 
 <h3>Senior Systems Engineer (contract) — ND Industries, Inc.</h3>
 <p class="role-meta">2012 · Troy, MI</p>
 <ul>
-  <li>Led a mixed Linux/Windows Epicor ERP implementation and production rollout with emphasis on infrastructure readiness, monitoring, and operational documentation.</li>
-  <li>Implemented Nagios monitoring and authored comprehensive internal system procedures and documentation.</li>
+  <li>Led a mixed Linux/Windows Epicor ERP implementation and production rollout with an emphasis on proactive monitoring.</li>
+  <li>Implemented Nagios monitoring and authored internal system procedures and technical documentation.</li>
 </ul>
 
-<h3>Senior Systems Engineer — The Walt Disney Company (ESPN)</h3>
+<h3>Senior Systems Engineer — ESPN, The Walt Disney Company</h3>
 <p class="role-meta">2011 · Seattle, WA</p>
 <ul>
-  <li>Supported application, load-balancing, and web infrastructure for ESPN.com and ESPN3.com using F5 BIG-IP and Red Hat clusters.</li>
-  <li>Completed a live data center migration of ESPN.com, ESPN3.com, and subsidiary properties.</li>
-  <li>Troubleshot production services under peak national traffic, including high-visibility ESPN.com services during NFL Sundays.</li>
-  <li>Administered and clustered Sun GlassFish Java application servers and performed capacity planning using SolarWinds.</li>
-  <li>Automated system configuration and enforced fleet consistency using CFEngine3.</li>
+  <li>Supported globally distributed, high-traffic ESPN.com and ESPN3.com infrastructure using Red Hat clusters and F5 BIG-IP.</li>
+  <li>Prepared and provisioned hosts, networking, and application configurations supporting a live data center migration of ESPN.com, ESPN3.com, and subsidiary properties.</li>
+  <li>Troubleshot production services under peak national traffic and administered clustered Sun GlassFish Java application servers, including capacity planning with SolarWinds.</li>
+  <li>Automated system configuration and consistency across the server fleet using CFEngine3.</li>
 </ul>
 
 <h3>Senior Systems Administrator — Entertainment Publications</h3>
 <p class="role-meta">2009 – 2011 · Troy, MI</p>
 <ul>
-  <li>Maintained enterprise infrastructure across CentOS, SUSE Linux, and VMware ESXi supporting high-traffic web and application platforms.</li>
+  <li>Maintained CentOS, SUSE Linux, and VMware ESXi infrastructure supporting high-traffic web and application platforms.</li>
   <li>Used Jenkins/Hudson to build and promote Java WAR packages through dev/UAT/production for JBoss deployment, with post-deployment verification via Nagios synthetic checks.</li>
   <li>Coordinated JBoss application-server optimization with senior software engineers and performed production deployments, configuration changes, and rollbacks.</li>
   <li>Performed JMeter load testing of critical site workflows, including shopping-cart transactions, to identify performance bottlenecks and validate capacity.</li>
@@ -139,15 +125,16 @@ as version-controlled documentation at <a href="https://github.com/greenbeanorg"
 <h3>Network Administrator — ND Industries, Inc.</h3>
 <p class="role-meta">2005 – 2009 · Troy, MI</p>
 <ul>
-  <li>Supported a carrier-managed AT&amp;T MPLS WAN using OSPF across multiple satellite offices; troubleshot routing and connectivity on Cisco IOS in coordination with AT&amp;T.</li>
-  <li>Built and maintained OpenVPN remote access authenticated against RADIUS and LDAP.</li>
-  <li>Operated core Linux infrastructure on Gentoo and Ubuntu, including qmail/Courier-IMAP mail, BIND DNS, Apache hosting, Samba file services, MySQL, and Linux RAID storage.</li>
-  <li>Implemented company-wide Nagios monitoring and documented systems and projects using MediaWiki.</li>
+  <li>Supported an AT&amp;T MPLS WAN with OSPF across multiple offices and troubleshot routing/connectivity on Cisco IOS.</li>
+  <li>Built OpenVPN remote access authenticated through RADIUS and LDAP.</li>
+  <li>Ran core Linux infrastructure including BIND DNS, Apache, Samba, MySQL, mail services, and Linux RAID.</li>
+  <li>Implemented company-wide Nagios monitoring and documented systems and projects in MediaWiki.</li>
 </ul>
 
 <p><strong>Earlier career (1996–2005):</strong> Systems Administrator and Systems Analyst roles with
-Cardina Internet Group, Ford Motor Company (NTT/Ciber contracts), Excite@Home, ClickAction (YesMail),
-and Advanced Data Systems.</p>
+Cardina Internet Group, Ford Motor Company (NTT/Ciber contracts), Excite@Home, ClickAction, and
+Advanced Data Systems, spanning Solaris, AIX, HP-UX, FreeBSD, OpenBSD, and Linux; IBM DB2 Connect
+middleware; and mail infrastructure (sendmail, qmail, IMAP, Zimbra).</p>
 
 <footer>
   <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a> ·

@@ -42,7 +42,7 @@
 <p>I'm a Linux systems professional with 20+ years of production experience. Since 2022
 I've run that same discipline at home: designing, breaking, fixing, and documenting
 real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
-across two sites, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
+at home and at a remote client site, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
 fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.</p>
 
 <p><strong>Live right now:</strong> <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> —
@@ -74,7 +74,6 @@ Open it, add a task, watch the status panel in the corner.</p>
 <h2>Selected work</h2>
 <ul>
   <li class="done">Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application exposed publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> over a self-managed Nginx/Let's Encrypt reverse proxy</li>
-  <li class="done">Diagnosed and resolved cross-stack failures spanning a Kubernetes scheduler deadlock under strict topology-spread constraints, a kubelet crash loop tied to Linux user-namespace device restrictions, and a Postgres privilege-scoping gap silently blocking application writes</li>
   <li class="done">Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
   <li class="done">Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
   <li class="done">Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
@@ -125,7 +124,7 @@ flowchart TB
 
     KK1[kk1 · Oracle Cloud Ampere A1<br/>WireGuard hub — static public endpoint<br/>off-site restic target]
 
-    subgraph REMOTE [Remote Site]
+    subgraph REMOTE [Remote client site]
         ZOM[zombie · Debian VM<br/>WireGuard spoke + subnet router]
         RPX[Remote Proxmox<br/>Pi-hole + LinuxGSM game server]
     end

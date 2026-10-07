@@ -57,13 +57,22 @@ using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
   <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, inter-VLAN routing, OSPF, MPLS, DNS/DHCP (BIND, Unbound), OPNsense, MikroTik RouterOS, Cisco IOS, WireGuard, OpenVPN, F5 BIG-IP, Citrix NetScaler, QoS/traffic shaping, tcpdump</li>
   <li><span class="skill-cat">Storage &amp; Backup:</span> ZFS, TrueNAS SCALE, mdadm RAID, LVM, NFS, SMB, restic, rsync, backup verification and recovery</li>
   <li><span class="skill-cat">Monitoring &amp; Observability:</span> Nagios, Icinga2, Grafana, ELK/Elastic Stack, Cacti, Uptime Kuma, syslog/journalctl, incident response, root-cause analysis</li>
-  <li><span class="skill-cat">Security &amp; Compliance:</span> Linux/BSD hardening, SSH bastion design, iptables/nftables, pf, Fail2ban, SELinux/AppArmor, TLS/Let's Encrypt, PCI compliance, Nessus, Nmap</li>
+  <li><span class="skill-cat">Security &amp; Compliance:</span> Linux/BSD hardening, SSH bastion design, iptables/nftables, pf, Fail2ban, SELinux/AppArmor, TLS/Let's Encrypt, Nmap</li>
   <li><span class="skill-cat">Web &amp; Data Platforms:</span> Apache, Nginx, PostgreSQL, MySQL, OpenLDAP, JBoss, GlassFish</li>
 </ul>
 
 <h2>Professional Experience</h2>
 
-<h3>Independent Infrastructure Engineering — Self-Directed</h3>
+<h3>Contract Systems Engineer (project-based) — Private Client</h3>
+<p class="role-meta">2023 – Present · Remote</p>
+<ul>
+  <li>Administer a private client's Proxmox VE environment remotely: rebuilt the host on Proxmox VE 8, built its Debian and Windows guest VMs, and handle ongoing patching, troubleshooting, and changes.</li>
+  <li>Performed major-version upgrades of the host (Proxmox VE 8 to 9) and Debian guest VM (12 to 13), along with Fail2ban host hardening and a GRUB/EFI boot repair.</li>
+  <li>Guided on-site hardware changes remotely, including a dual-port PCIe NIC, NVMe relocation, BIOS configuration, and a JetKVM remote console, and brought the environment back into service after the client's relocation.</li>
+  <li>Deploy and maintain LinuxGSM-managed dedicated game servers on a Debian VM, including installs, updates, and removal of retired servers.</li>
+</ul>
+
+<h3>Independent Infrastructure Projects</h3>
 <p class="role-meta">2022 – Present · Ormond Beach, FL</p>
 <ul>
   <li>Designed and operate a multi-site, multi-host Proxmox environment running Linux services, network infrastructure, storage, and public-facing application workloads, provisioned and configured through Terraform, Ansible, and Git.</li>
@@ -81,16 +90,16 @@ using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
 <h3>Contract Systems Engineer (project-based) — Sendwell, Inc.</h3>
 <p class="role-meta">2015 – 2022 · Bloomfield Hills, MI / Remote</p>
 <ul>
-  <li>Provided intermittent, project-based infrastructure engineering and modernization for a high-volume email marketing platform, including production troubleshooting, upgrades, migrations, and infrastructure changes.</li>
+  <li>Provided intermittent, project-based infrastructure engineering and modernization for a high-volume transactional platform, including production troubleshooting, upgrades, migrations, and infrastructure changes.</li>
 </ul>
 
 <h3>Senior Systems Engineer — Sendwell, Inc.</h3>
 <p class="role-meta">2013 – 2015 · Bloomfield Hills, MI / Hybrid (remote ~3 days/week)</p>
 <ul>
-  <li>Operated, optimized, and troubleshot high-volume transactional email infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
-  <li>Operated clustered mail infrastructure, 10GbE switching with static upstream routing, PostgreSQL services, and 40Gb InfiniBand-connected storage.</li>
+  <li>Operated, optimized, and troubleshot high-volume transactional infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
+  <li>Operated clustered application infrastructure, 10GbE switching with static upstream routing, and PostgreSQL services; administered Mellanox InfiniBand networking supporting high-throughput backup workloads.</li>
   <li>Built custom Nagios and Cacti monitoring covering 200+ VMs and automated backup pipelines using rsync, shell scripting, and ghettoVCB against the ESXi CLI.</li>
-  <li>Implemented centralized ELK logging and Kibana dashboards for Apache/Nginx infrastructure to analyze request traffic, source activity, HTTP response patterns, and application behavior.</li>
+  <li>Deployed Logstash agents across monitored hosts to centralize Apache/Nginx logs in ELK; Kibana dashboards gave the business visibility into campaign conversions by geography.</li>
   <li>Migrated production virtual machines from VMware ESXi to Proxmox by exporting VMDK images and reconfiguring networking and service configuration on the new platform.</li>
   <li>Managed OpenLDAP, DHCP, BIND DNS, and office infrastructure; maintained SaltStack configuration management and internal documentation/ticketing through MediaWiki and RequestTracker.</li>
 </ul>
@@ -115,7 +124,7 @@ using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
 <p class="role-meta">2009 – 2011 · Troy, MI</p>
 <ul>
   <li>Maintained CentOS, SUSE Linux, and VMware ESXi infrastructure supporting high-traffic web and application platforms.</li>
-  <li>Used Jenkins/Hudson to build and promote Java WAR packages through dev/UAT/production for JBoss deployment, with post-deployment verification via Nagios synthetic checks.</li>
+  <li>Partnered with developers on hundreds of production deployments across dev/UAT/production, working with Jenkins/Hudson in the deployment pipeline and trading feedback on configuration and performance.</li>
   <li>Coordinated JBoss application-server optimization with senior software engineers and performed production deployments, configuration changes, and rollbacks.</li>
   <li>Performed JMeter load testing of critical site workflows, including shopping-cart transactions, to identify performance bottlenecks and validate capacity.</li>
   <li>Administered Apache web infrastructure including SSL/TLS configuration, and automated JBoss and Apache deployments with shell scripting alongside centralized monitoring.</li>
@@ -131,7 +140,7 @@ using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
   <li>Implemented company-wide Nagios monitoring and documented systems and projects in MediaWiki.</li>
 </ul>
 
-<p><strong>Earlier career (1996–2005):</strong> Systems Administrator and Systems Analyst roles with
+<p><strong>Earlier career:</strong> Systems Administrator and Systems Analyst roles with
 Cardina Internet Group, Ford Motor Company (NTT/Ciber contracts), Excite@Home, ClickAction, and
 Advanced Data Systems, spanning Solaris, AIX, HP-UX, FreeBSD, OpenBSD, and Linux; IBM DB2 Connect
 middleware; and mail infrastructure (sendmail, qmail, IMAP, Zimbra).</p>

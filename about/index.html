@@ -3,24 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Andy Alexander</title>
-<meta name="description" content="About Andy Alexander — Linux systems professional, homelab builder, and job-searching sysadmin.">
+<title>greenbean.org — Andy Alexander — Linux Systems and Infrastructure</title>
+<meta name="description" content="Linux systems administration and infrastructure engineering, documented as production-style runbooks from a real multi-site environment.">
 <style>
-  :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;}
+  :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;--code-bg:#f6f8fa;}
   @media (prefers-color-scheme: dark){
-    :root{--bg:#12141a;--fg:#e8e8e8;--muted:#aaa;--accent:#3ecf8e;--border:#333;}
+    :root{--bg:#12141a;--fg:#e8e8e8;--muted:#aaa;--accent:#3ecf8e;--border:#333;--code-bg:#1c1f26;}
   }
   body{background:var(--bg);color:var(--fg);font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:820px;margin:0 auto;padding:2rem 1.25rem;line-height:1.55;}
-  nav a{margin-right:1rem;color:var(--accent);text-decoration:none;}
-  nav a:hover{text-decoration:underline;}
-  h1{font-size:1.9rem;margin-bottom:.1rem;}
-  h2{font-size:1.25rem;border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-top:2rem;}
-  .subtitle{color:var(--muted);margin-top:0;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  nav a{margin-right:1rem;}
+  h1{font-size:1.9rem;margin-bottom:.25rem;}
+  h2{font-size:1.3rem;border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-top:2rem;}
+  h3{font-size:1.05rem;margin-bottom:.4rem;}
+  .tagline{color:var(--muted);margin-top:0;}
   ul{padding-left:1.2rem;}
   li{margin:.3rem 0;}
-  .cta{margin-top:1rem;}
-  .cta a{display:inline-block;margin:0 .6rem .6rem 0;padding:.5rem 1rem;border:1px solid var(--accent);border-radius:6px;color:var(--accent);text-decoration:none;}
-  .cta a:hover{background:var(--accent);color:var(--bg);}
+  .done::before{content:"✅ ";}
+  .wip::before{content:"🚧 ";}
+  .todo::before{content:"📋 ";}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;overflow-x:auto;font-size:.85rem;}
   footer{margin-top:2.5rem;color:var(--muted);font-size:.9rem;}
   footer a{color:var(--accent);}
 </style>
@@ -33,51 +36,137 @@
   <a href="https://greenbean.org/resume/">Resume</a>
 </nav>
 
-<h1>About</h1>
-<p class="subtitle">Andy Alexander — Linux Systems and Infrastructure</p>
+<h1>greenbean.org</h1>
+<p class="tagline">Andy Alexander — Linux Systems and Infrastructure</p>
 
-<p>I got my start in 1996, in high school, at Cardina Internet Group — a
-dialup ISP in Lapeer, MI, not far from where I grew up in Dryden. I came
-in on the support desk, but I kept digging into how the systems actually
-worked, and it wasn't long before I was doing systems administration. I
-started picking up a bit of everything: shell scripting, sendmail, DNS, and
-the discipline of not touching production on a Friday afternoon. That early
-opportunity is a big part of why I ended up spending a career in this stack
-instead of somewhere else entirely.</p>
+<p>I'm a Linux systems professional with 20+ years of production experience. Since 2022
+I've run that same discipline at home: designing, breaking, fixing, and documenting
+real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
+at home and at a remote client site, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
+fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.</p>
 
-<p>Since 2022 I've been running that same discipline at home instead of at
-an employer — designing, breaking, fixing, and documenting a real
-multi-site environment because it's the best way I know to keep the
-skills sharp and prove they're current. This site and the runbooks
-linked from it are the result: three Proxmox hosts, ZFS storage on
-TrueNAS SCALE, OPNsense routing over XGS-PON fiber, a WireGuard overlay
-connecting multiple sites, redundant DNS, and backups that actually get
-verified. Nothing here is a lab exercise from a course — it's the
-infrastructure I depend on daily, documented the way I'd want it
-documented if someone else had to pick it up at 2am.</p>
+<p><strong>Live right now:</strong> <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> —
+a Postgres-backed app on a 3-node k3s cluster, provisioned by Terraform + Ansible,
+monitored by Icinga2, and served over a self-managed Nginx/Let's Encrypt reverse proxy.
+Open it, add a task, watch the status panel in the corner.</p>
 
-<h2>Right now</h2>
+<h2>What this demonstrates</h2>
+
+<h3>Linux systems administration</h3>
 <ul>
-  <li>Looking for a Linux systems administrator / systems engineer role — remote or, if it's the right fit, on-site</li>
-  <li>Based in Ormond Beach, FL</li>
-  <li>VLAN segmentation is done and holding up well; Terraform + Ansible fleet provisioning is live — a 3-node k3s cluster, PostgreSQL, and Icinga2, all provisioned and configured from code, running the app at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> — with Prometheus/Grafana monitoring and broader fleet coverage next; see the runbooks for what's shipped versus planned</li>
+  <li>systemd service management &amp; troubleshooting</li>
+  <li>Package management, patching, OS upgrades</li>
+  <li>Filesystems, disks, users, groups, permissions</li>
+  <li>SSH, journald/log analysis, process &amp; resource triage</li>
+  <li>Backup, restore, and service recovery</li>
 </ul>
 
-<h2>Get in touch</h2>
-<p>The fastest way to reach me is LinkedIn. My resume — with the full
-work history — is on this site as well.</p>
+<h3>Infrastructure engineering</h3>
+<ul>
+  <li>Virtualization — Proxmox, KVM/LXC, Kubernetes (k3s)</li>
+  <li>Networking, VLANs, firewalling, DNS/DHCP</li>
+  <li>Storage design — ZFS, RAID, NFS/SMB</li>
+  <li>Monitoring &amp; observability — Icinga2, Uptime Kuma</li>
+  <li>Automation — Terraform, Ansible, Python/Bash</li>
+  <li>Incident response &amp; root-cause analysis</li>
+</ul>
 
-<p class="cta">
-  <a href="https://linkedin.com/in/andy-alexander-linux">Connect on LinkedIn</a>
-  <a href="https://greenbean.org/resume/">View resume</a>
-  <a href="https://github.com/greenbeanorg">Browse GitHub</a>
-</p>
+<h2>Selected work</h2>
+<ul>
+  <li class="done">Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application exposed publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> over a self-managed Nginx/Let's Encrypt reverse proxy</li>
+  <li class="done">Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
+  <li class="done">Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
+  <li class="done">Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
+  <li class="done">VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
+  <li class="done">30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
+  <li class="done">WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
+  <li class="done">Automated restic backup pipeline across three Proxmox nodes, firewall infrastructure, and home automation — 90-day retention, scheduled integrity verification, off-site replication to Oracle Cloud</li>
+  <li class="done">Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
+  <li class="done">Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
+</ul>
+
+<h2>Current work</h2>
+<ul>
+  <li class="wip">Prometheus + Grafana + node_exporter, alongside Uptime Kuma</li>
+</ul>
+
+<h2>Planned</h2>
+<ul>
+  <li class="todo">Extend Ansible fleet roles — baseline, NUT, restic, and Docker host roles — to swearengen and wu</li>
+  <li class="todo">Extend Terraform coverage to the rest of the Proxmox fleet</li>
+</ul>
+
+<h2>Infrastructure at a glance</h2>
+<pre class="mermaid">
+flowchart TB
+    INET((Internet<br/>XGS-PON Fiber))
+    ONT[XGS-PON ONT-on-a-stick<br/>SFP+ module]
+
+    subgraph SW [MikroTik CRS310-8G+2S+ — RouterOS]
+        BW[bridge-WAN<br/>SFP+ cage + 1 port]
+        BL[bridge-LAN<br/>remaining ports]
+    end
+
+    subgraph WU [wu — Proxmox host, ODROID-H3]
+        FW[OPNsense VM — Router / Firewall<br/>Kea DHCPv4 · option 6 hands out both resolvers<br/>WireGuard spoke]
+        PH2[pihole2 · LXC 1000<br/>Pi-hole, host install — secondary DNS]
+    end
+
+    PH1[pihole · ODROID-XU4<br/>Armbian 26.8 / kernel 6.6<br/>Pi-hole in Docker — primary DNS]
+
+    subgraph SWG [swearengen — Proxmox host, i5-10600K / 48GB]
+        NAS[TrueNAS SCALE VM<br/>ZFS RAIDZ1 pool — PCIe SATA passthrough]
+        FARN[farnum — Plex Media Server VM over NFS]
+        HA[Home Assistant VM]
+    end
+
+    CLIENTS[LAN clients]
+
+    KK1[kk1 · Oracle Cloud Ampere A1<br/>WireGuard hub — static public endpoint<br/>off-site restic target]
+
+    subgraph REMOTE [Remote client site]
+        ZOM[zombie · Debian VM<br/>WireGuard spoke + subnet router]
+        RPX[Remote Proxmox<br/>Pi-hole + LinuxGSM game server]
+    end
+
+    INET --- ONT --- BW
+    BW ---|"wu NIC 1 → WAN vNIC"| FW
+    FW ---|"LAN vNIC → wu NIC 2"| BL
+    BL --- CLIENTS
+    BL --- PH1
+    BL --- SWG
+    CLIENTS -. "resolver 1" .-> PH1
+    CLIENTS -. "resolver 2" .-> PH2
+    FW == "WireGuard" ==> KK1
+    ZOM == "WireGuard" ==> KK1
+    ZOM --- RPX
+    SWG -. restic over SFTP .- KK1
+</pre>
+
+<h2>Documentation</h2>
+<p><a href="https://github.com/greenbeanorg/homelab-docs">homelab-docs — 23 runbooks, ~7,900 lines — each records what was built, why that approach, what broke, and how to rebuild it from nothing</a></p>
 
 <footer>
   <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a> ·
   <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a> ·
+  <a href="https://greenbean.org/resume/">Resume</a> ·
   Ormond Beach, FL — open to remote Linux systems administration / systems engineering roles
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: isDark ? '#1c1f26' : '#f6f8fa',
+      primaryBorderColor: '#3ecf8e',
+      primaryTextColor: isDark ? '#e8e8e8' : '#1a1a1a',
+      lineColor: '#3ecf8e',
+      fontFamily: '-apple-system, Segoe UI, Roboto, sans-serif'
+    }
+  });
+</script>
 </body>
 </html>

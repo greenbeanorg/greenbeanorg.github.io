@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume — Andy Alexander</title>
-<meta name="description" content="Andy Alexander — Senior Linux / Infrastructure Engineer. 20+ years running, troubleshooting, and automating production infrastructure.">
+<meta name="description" content="Andy Alexander - Linux Systems Administrator. Production Linux, virtualization, storage, monitoring, and on-call operations.">
 <style>
   :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;}
   @media (prefers-color-scheme: dark){
@@ -21,6 +21,7 @@
   .role-meta{color:var(--muted);font-size:.92rem;margin:.1rem 0 .5rem;}
   ul{padding-left:1.2rem;}
   li{margin:.3rem 0;}
+  li a{color:var(--accent);}
   .env{font-size:.88rem;color:var(--muted);margin-top:.4rem;}
   .skill-cat{font-weight:600;}
   footer{margin-top:2.5rem;color:var(--muted);font-size:.9rem;}
@@ -36,7 +37,7 @@
 </nav>
 
 <h1>Andy Alexander</h1>
-<p class="subtitle">Senior Linux / Infrastructure Engineer</p>
+<p class="subtitle">Linux Systems Administrator</p>
 <p class="contact">
   Ormond Beach, FL (open to remote) ·
   <a href="https://linkedin.com/in/andy-alexander-linux">linkedin.com/in/andy-alexander-linux</a> ·
@@ -44,21 +45,24 @@
 </p>
 
 <h2>Summary</h2>
-<p>Senior Linux / infrastructure engineer with 20+ years running, troubleshooting,
-and automating production infrastructure, including high-volume platforms at
-Sendwell and ESPN. Since 2022, have built and operated multi-site infrastructure
-using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
+<p>Linux/Unix systems administrator with extensive production experience, including
+globally distributed ESPN/Disney web infrastructure and a high-volume transactional
+platform running 200+ VMs in colocation. On-call in every role, using monitoring and
+automated recovery to make after-hours pages rare.</p>
 
-<h2>Core Competencies</h2>
+<h2>Skills</h2>
 <ul>
-  <li><span class="skill-cat">Linux &amp; Unix:</span> RHEL, CentOS, Debian, Ubuntu, FreeBSD, OpenBSD, Bash, systemd, SSH, package/software lifecycle, log analysis, troubleshooting; earlier career: Solaris, AIX, HP-UX</li>
-  <li><span class="skill-cat">Automation &amp; Infrastructure as Code:</span> Terraform, Ansible, SaltStack, Git/GitHub, Bash, Python, Jenkins/Hudson (CI)</li>
-  <li><span class="skill-cat">Virtualization, Containers &amp; Cloud:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker, Kubernetes (k3s), Oracle Cloud Infrastructure (OCI)</li>
-  <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, inter-VLAN routing, OSPF, MPLS, DNS/DHCP (BIND, Unbound), OPNsense, MikroTik RouterOS, Cisco IOS, WireGuard, OpenVPN, F5 BIG-IP, Citrix NetScaler, QoS/traffic shaping, tcpdump</li>
-  <li><span class="skill-cat">Storage &amp; Backup:</span> ZFS, TrueNAS SCALE, mdadm RAID, LVM, NFS, SMB, restic, rsync, backup verification and recovery</li>
-  <li><span class="skill-cat">Monitoring &amp; Observability:</span> Nagios, Icinga2, Grafana, ELK/Elastic Stack, Cacti, Uptime Kuma, syslog/journalctl, incident response, root-cause analysis</li>
-  <li><span class="skill-cat">Security &amp; Compliance:</span> Linux/BSD hardening, SSH bastion design, iptables/nftables, pf, Fail2ban, SELinux/AppArmor, TLS/Let's Encrypt, Nmap</li>
-  <li><span class="skill-cat">Web &amp; Data Platforms:</span> Apache, Nginx, PostgreSQL, MySQL, OpenLDAP, JBoss, GlassFish</li>
+  <li><span class="skill-cat">Linux &amp; Unix:</span> Ubuntu, Debian, RHEL/CentOS, Rocky Linux, SUSE, FreeBSD, systemd, SSH, Bash, log and performance analysis, troubleshooting</li>
+  <li><span class="skill-cat">Patching &amp; Software Management:</span> apt/dpkg, yum/rpm, package and software lifecycle, OS major-version upgrades, PXE/kickstart provisioning, server rebuilds and re-imaging</li>
+  <li><span class="skill-cat">Automation &amp; Configuration Management:</span> Ansible, SaltStack, Terraform, Bash, Git/GitHub, cron, systemd timers</li>
+  <li><span class="skill-cat">Monitoring &amp; Incident Response:</span> Nagios (including event handlers for automated recovery), Icinga2, Grafana, Uptime Kuma, ELK/Elastic Stack, Cacti, syslog/journalctl, alert triage, root-cause analysis</li>
+  <li><span class="skill-cat">Virtualization &amp; Hardware:</span> Proxmox VE, VMware ESXi, KVM, LXC, Docker, k3s, Oracle Cloud (OCI); IPMI/iDRAC, BIOS/firmware, hardware RAID</li>
+  <li><span class="skill-cat">Storage &amp; Backup:</span> LVM, mdadm, EXT3/EXT4/XFS, NFS, Samba, ZFS (TrueNAS), restic, rsync, backup verification and recovery</li>
+  <li><span class="skill-cat">Networking:</span> TCP/IP, VLANs, NIC bonding, MTU, OPNsense, WireGuard, OpenVPN, Cisco IOS, tcpdump</li>
+  <li><span class="skill-cat">DNS, DHCP &amp; Identity:</span> BIND, Unbound, ISC Kea, OpenLDAP, LDAP host authentication (NSS/pam_ldap), RADIUS</li>
+  <li><span class="skill-cat">Security:</span> Linux hardening, iptables/nftables, Fail2ban, SELinux/AppArmor, TLS/Let's Encrypt</li>
+  <li><span class="skill-cat">Web, Data &amp; Process:</span> Apache, Nginx, PostgreSQL, MySQL; formal change control, runbooks, Jira, RequestTracker, MediaWiki</li>
+  <li><span class="skill-cat">Earlier experience:</span> Solaris, AIX, HP-UX, OpenBSD/pf, Oracle, JBoss, GlassFish, F5 BIG-IP, Citrix NetScaler, CFEngine3, OSPF/MPLS</li>
 </ul>
 
 <h2>Professional Experience</h2>
@@ -69,86 +73,78 @@ using Terraform, Ansible, Proxmox, ZFS, Docker, OPNsense/WireGuard, and k3s.</p>
   <li>Administer a private client's Proxmox VE environment remotely: rebuilt the host on Proxmox VE 8, built its Debian and Windows guest VMs, and handle ongoing patching, troubleshooting, and changes.</li>
   <li>Performed major-version upgrades of the host (Proxmox VE 8 to 9) and Debian guest VM (12 to 13), along with Fail2ban host hardening and a GRUB/EFI boot repair.</li>
   <li>Guided on-site hardware changes remotely, including a dual-port PCIe NIC, NVMe relocation, BIOS configuration, and a JetKVM remote console, and brought the environment back into service after the client's relocation.</li>
-  <li>Deploy and maintain LinuxGSM-managed dedicated game servers on a Debian VM, including installs, updates, and removal of retired servers.</li>
 </ul>
 
 <h3>Independent Infrastructure Projects</h3>
 <p class="role-meta">2022 – Present · Ormond Beach, FL</p>
 <ul>
-  <li>Designed and operate a multi-site, multi-host Proxmox environment running Linux services, network infrastructure, storage, and public-facing application workloads, provisioned and configured through Terraform, Ansible, and Git.</li>
-  <li>Provisioned a 3-node k3s cluster with supporting PostgreSQL and Icinga2 hosts via Terraform and Ansible, hosting a Flask/PostgreSQL application.</li>
-  <li>Exposed the application publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> via a self-managed Nginx/Let's Encrypt reverse proxy on an Oracle Cloud Infrastructure host, tunneled over an existing WireGuard link, with rate limiting, least-privilege API credentials, and custom Icinga2 SQL-based health checks.</li>
-  <li>Designed and operate a segmented multi-VLAN network using OPNsense for inter-VLAN routing and firewall policy, with MikroTik switching and controlled connectivity between infrastructure, storage, service, and client networks; engineered WAN traffic shaping with pipes and queues to control bufferbloat, holding an A+ grade at ~361/317 Mbps with +0/+2 ms added latency under load.</li>
-  <li>Designed and deployed a WireGuard hub-and-spoke VPN connecting two sites and roaming clients through a cloud-hosted hub; implemented subnet routing and asymmetric NAT policy, and diagnosed tunnel bring-up failures using packet capture.</li>
-  <li>Migrated approximately 30TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
-  <li>Maintain infrastructure documentation covering architecture, configuration, recovery procedures, and verification, under Git version control.</li>
+  <li>Troubleshoot Linux, network, storage, virtualization, and service failures using logs, packet capture, and system tools; document failure modes, verification steps, and recovery procedures.</li>
+  <li>Maintain Ansible playbooks configuring all six hosts in the environment (k3s, PostgreSQL, Icinga2, and a cloud-hosted Nginx reverse proxy) from a single Git-managed repository (<a href="https://github.com/greenbeanorg/homelab-automation">homelab-automation</a>).</li>
+  <li>Built a hot-standby Kea DHCPv4 HA pair (Kea 3.0, Rocky Linux 9, PostgreSQL) across two Proxmox hosts, with configs in Git, a drift check, and a scripted failover test measuring ~58 s failover and verifying lease sync.</li>
   <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud.</li>
-  <li>Built declarative monitoring automation on Uptime Kuma, with monitor definitions maintained as inventory and reconciled through API-driven provisioning across virtualization, storage, networking, DNS, and application services.</li>
-  <li>Deployed and operated multi-container Docker Compose application infrastructure, resolving startup dependencies, UID/GID permission mapping, container networking, and hardlink-aware ZFS dataset layout.</li>
+  <li>Migrated approximately 30 TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
+  <li>Run a Flask/PostgreSQL application publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> through a self-managed Nginx/Let's Encrypt reverse proxy on Oracle Cloud, tunneled over WireGuard, with custom Icinga2 health checks.</li>
 </ul>
 
 <h3>Contract Systems Engineer (project-based) — Sendwell, Inc.</h3>
 <p class="role-meta">2015 – 2022 · Bloomfield Hills, MI / Remote</p>
 <ul>
-  <li>Provided intermittent, project-based infrastructure engineering and modernization for a high-volume transactional platform, including production troubleshooting, upgrades, migrations, and infrastructure changes.</li>
+  <li>Rebuilt a production virtualization host remotely over IPMI (MegaRAID arrays, Proxmox, pfSense firewall with segmented networks), and recovered a crashed host whose mdadm array failed to assemble at boot, restoring VM services the same night.</li>
+  <li>Built and supported LAMP and Python/WSGI application servers for developers, including Apache vhosts, MySQL/PostgreSQL, account and privilege management, database recovery, and data migration.</li>
 </ul>
 
 <h3>Senior Systems Engineer — Sendwell, Inc.</h3>
 <p class="role-meta">2013 – 2015 · Bloomfield Hills, MI / Hybrid (remote ~3 days/week)</p>
 <ul>
-  <li>Operated, optimized, and troubleshot high-volume transactional infrastructure on Linux (Ubuntu/Debian/CentOS), VMware ESXi, and Proxmox, supporting thousands of concurrent transactions and sustained network throughput of approximately 5 Gbps.</li>
-  <li>Operated clustered application infrastructure, 10GbE switching with static upstream routing, and PostgreSQL services; administered Mellanox InfiniBand networking supporting high-throughput backup workloads.</li>
-  <li>Built custom Nagios and Cacti monitoring covering 200+ VMs and automated backup pipelines using rsync, shell scripting, and ghettoVCB against the ESXi CLI.</li>
-  <li>Deployed Logstash agents across monitored hosts to centralize Apache/Nginx logs in ELK; Kibana dashboards gave the business visibility into campaign conversions by geography.</li>
-  <li>Migrated production virtual machines from VMware ESXi to Proxmox by exporting VMDK images and reconfiguring networking and service configuration on the new platform.</li>
-  <li>Managed OpenLDAP, DHCP, BIND DNS, and office infrastructure; maintained SaltStack configuration management and internal documentation/ticketing through MediaWiki and RequestTracker.</li>
+  <li>Owned production on-call and cut pages from a few a month to a few a year; built Nagios event handlers that restarted a crash-prone delivery service over SSH, retried once, and escalated only if the restart failed, so the pipeline recovered without manual intervention.</li>
+  <li>Operated and troubleshot high-volume transactional infrastructure in colocation on Ubuntu/Debian and CentOS, VMware ESXi, and Proxmox, resolving issues spanning operating system, network, storage, and application layers.</li>
+  <li>Co-led a staged production migration from VMware ESXi to Proxmox to eliminate VMware licensing: resolved driver, NIC-naming, and SCSI-to-virtio issues in a dev environment using production images, then converted one of four clustered hosts at a time in after-hours windows with a scripted import and post-cutover validation.</li>
+  <li>Built custom Nagios and Cacti monitoring covering 200+ VMs and automated backup pipelines using rsync, shell scripting, and ghettoVCB; deployed Logstash agents to centralize Apache/Nginx logs in ELK.</li>
+  <li>Managed OpenLDAP, including centralized Linux host authentication via NSS/pam_ldap, plus DHCP and BIND DNS; maintained SaltStack configuration management, defined the fleet hostname standard, and kept documentation and ticketing in MediaWiki and RequestTracker.</li>
+  <li>Served as sole IT support for an office of fewer than 20 staff alongside production duties, supporting staff MacBooks and Windows laptops, Wi-Fi, and VPN access.</li>
 </ul>
 
 <h3>Senior Systems Engineer (contract) — ND Industries, Inc.</h3>
 <p class="role-meta">2012 · Troy, MI</p>
 <ul>
-  <li>Led a mixed Linux/Windows Epicor ERP implementation and production rollout with an emphasis on proactive monitoring.</li>
-  <li>Implemented Nagios monitoring and authored internal system procedures and technical documentation.</li>
+  <li>Led a mixed Linux/Windows Epicor ERP buildout: built the Windows Server environment and its Active Directory domain (accounts, passwords, domain joins), implemented Nagios monitoring, and documented system procedures.</li>
 </ul>
 
 <h3>Senior Systems Engineer — ESPN, The Walt Disney Company</h3>
 <p class="role-meta">2011 · Seattle, WA</p>
 <ul>
-  <li>Supported globally distributed, high-traffic ESPN.com and ESPN3.com infrastructure using Red Hat clusters and F5 BIG-IP.</li>
-  <li>Prepared and provisioned hosts, networking, and application configurations supporting a live data center migration of ESPN.com, ESPN3.com, and subsidiary properties.</li>
-  <li>Troubleshot production services under peak national traffic and administered clustered Sun GlassFish Java application servers, including capacity planning with SolarWinds.</li>
-  <li>Automated system configuration and consistency across the server fleet using CFEngine3.</li>
+  <li>Supported globally distributed, high-traffic ESPN.com and ESPN3.com infrastructure on Red Hat clusters and F5 BIG-IP, automating fleet configuration with CFEngine3; provisioned hosts and configurations for a live data center migration.</li>
+  <li>Troubleshot production services under peak national traffic and administered clustered Sun GlassFish application servers, including capacity planning with SolarWinds.</li>
 </ul>
 
 <h3>Senior Systems Administrator — Entertainment Publications</h3>
 <p class="role-meta">2009 – 2011 · Troy, MI</p>
 <ul>
-  <li>Maintained CentOS, SUSE Linux, and VMware ESXi infrastructure supporting high-traffic web and application platforms.</li>
-  <li>Partnered with developers on hundreds of production deployments across dev/UAT/production, working with Jenkins/Hudson in the deployment pipeline and trading feedback on configuration and performance.</li>
-  <li>Coordinated JBoss application-server optimization with senior software engineers and performed production deployments, configuration changes, and rollbacks.</li>
-  <li>Performed JMeter load testing of critical site workflows, including shopping-cart transactions, to identify performance bottlenecks and validate capacity.</li>
-  <li>Administered Apache web infrastructure including SSL/TLS configuration, and automated JBoss and Apache deployments with shell scripting alongside centralized monitoring.</li>
-  <li>Configured and supported Citrix NetScaler load balancing, including virtual servers, service groups, health monitoring, and traffic distribution.</li>
+  <li>Maintained physical and virtual CentOS, SUSE Linux, and VMware ESXi infrastructure in colocation, supporting high-traffic web and application platforms across dev/UAT/production.</li>
+  <li>Partnered with developers on hundreds of production deployments under formal change control, promoting releases through dev/UAT/production.</li>
+  <li>Provisioned CentOS servers over PXE network boot using kickstart automated installs, and integrated Linux hosts with centralized LDAP authentication using NSS and pam_ldap.</li>
+  <li>Mentored junior sysadmins and developers on Linux infrastructure and on JBoss configuration and performance tuning.</li>
+  <li>Built Nagios event handlers to automatically restart failing services, and supported MySQL and Oracle on RHEL, including Oracle installer kernel tuning.</li>
 </ul>
 
-<h3>Network Administrator — ND Industries, Inc.</h3>
+<h3>Network / Systems Administrator — ND Industries, Inc.</h3>
 <p class="role-meta">2005 – 2009 · Troy, MI</p>
 <ul>
-  <li>Supported an AT&amp;T MPLS WAN with OSPF across multiple offices and troubleshot routing/connectivity on Cisco IOS.</li>
-  <li>Built OpenVPN remote access authenticated through RADIUS and LDAP.</li>
-  <li>Ran core Linux infrastructure including BIND DNS, Apache, Samba, MySQL, mail services, and Linux RAID.</li>
-  <li>Implemented company-wide Nagios monitoring and documented systems and projects in MediaWiki.</li>
+  <li>Ran core Linux and BSD infrastructure on Ubuntu, Debian, and FreeBSD (BIND DNS, Apache, Samba, MySQL, mail, Linux RAID, NIC bonding), with company-wide Nagios monitoring and documentation in MediaWiki.</li>
+  <li>Performed hands-on server deployment, OS installation, hardware troubleshooting, disk replacement, and RAID configuration on Dell PowerEdge servers in the company's on-site data center.</li>
+  <li>Supported an AT&amp;T MPLS WAN with OSPF across multiple offices, troubleshot routing on Cisco IOS, and built OpenVPN remote access authenticated through RADIUS and LDAP.</li>
+  <li>Built and administered OpenLDAP central authentication (VPN, email, Samba); installed and administered Jira for IT ticketing.</li>
 </ul>
 
 <p><strong>Earlier career:</strong> Systems Administrator and Systems Analyst roles with
-Cardina Internet Group, Ford Motor Company (NTT/Ciber contracts), Excite@Home, ClickAction, and
-Advanced Data Systems, spanning Solaris, AIX, HP-UX, FreeBSD, OpenBSD, and Linux; IBM DB2 Connect
-middleware; and mail infrastructure (sendmail, qmail, IMAP, Zimbra).</p>
+Cardina Internet Group (ISP), Ford Motor Company (NTT/Ciber contracts), Excite@Home (ISP),
+ClickAction, and Advanced Data Systems (ISP), spanning Solaris, AIX, HP-UX, FreeBSD, OpenBSD,
+and Linux.</p>
 
 <footer>
   <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a> ·
   <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a> ·
-  Ormond Beach, FL — open to remote systems engineering roles
+  Ormond Beach, FL — open to remote Linux systems administration roles
 </footer>
 
 </body>

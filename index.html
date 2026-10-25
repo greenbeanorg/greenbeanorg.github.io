@@ -201,14 +201,21 @@ neither house needs an inbound port
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
   const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const c = isDark
+    ? {node:'#1c2a24', group:'#141c18', text:'#ffffff', accent:'#3ecf8e', bg:'#12141a'}
+    : {node:'#e6f5ec', group:'#f6faf8', text:'#1a1a1a', accent:'#0a8a55', bg:'#ffffff'};
   mermaid.initialize({
     startOnLoad: true,
     theme: 'base',
     themeVariables: {
-      primaryColor: isDark ? '#1c1f26' : '#f6f8fa',
-      primaryBorderColor: '#3ecf8e',
-      primaryTextColor: isDark ? '#e8e8e8' : '#1a1a1a',
-      lineColor: '#3ecf8e',
+      darkMode: isDark,
+      background: c.bg,
+      primaryColor: c.node, mainBkg: c.node, secondaryColor: c.node,
+      tertiaryColor: c.group, clusterBkg: c.group, clusterBorder: c.accent,
+      primaryBorderColor: c.accent, nodeBorder: c.accent,
+      primaryTextColor: c.text, secondaryTextColor: c.text, tertiaryTextColor: c.text,
+      textColor: c.text, nodeTextColor: c.text, titleColor: c.accent,
+      lineColor: c.accent, edgeLabelBackground: c.bg,
       fontFamily: '-apple-system, Segoe UI, Roboto, sans-serif'
     }
   });

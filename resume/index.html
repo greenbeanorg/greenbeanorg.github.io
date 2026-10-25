@@ -81,7 +81,7 @@ automated recovery to make after-hours pages rare.</p>
   <li>Troubleshoot Linux, network, storage, virtualization, and service failures using logs, packet capture, and system tools; document failure modes, verification steps, and recovery procedures.</li>
   <li>Maintain Ansible playbooks configuring all six hosts in the environment (k3s, PostgreSQL, Icinga2, and a cloud-hosted Nginx reverse proxy) from a single Git-managed repository (<a href="https://github.com/greenbeanorg/homelab-automation">homelab-automation</a>).</li>
   <li>Built a hot-standby Kea DHCPv4 HA pair (Kea 3.0, Rocky Linux 9, PostgreSQL) across two Proxmox hosts, with configs in Git, a drift check, and a scripted failover test measuring ~58 s failover and verifying lease sync.</li>
-  <li>Built automated restic backup pipelines across three Proxmox nodes, firewall infrastructure, and home automation, with 90-day retention, scheduled integrity verification, and off-site replication to Oracle Cloud.</li>
+  <li>Built off-site restic backups from TrueNAS to Oracle Cloud over a WireGuard overlay, with tiered daily/weekly/monthly retention and scheduled full-data integrity checks (restic check --read-data).</li>
   <li>Migrated approximately 30 TB of storage from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool using PCIe SATA passthrough under Proxmox; redesigned cross-host storage access around NFS.</li>
   <li>Run a Flask/PostgreSQL application publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> through a self-managed Nginx/Let's Encrypt reverse proxy on Oracle Cloud, tunneled over WireGuard, with custom Icinga2 health checks.</li>
 </ul>

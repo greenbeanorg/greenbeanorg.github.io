@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>greenbean.org — Andy Alexander — Linux Systems and Infrastructure</title>
-<meta name="description" content="Linux systems administration and infrastructure engineering, documented as production-style runbooks from a real multi-site environment.">
+<title>greenbean.org — Andy Alexander — Linux Systems Administrator</title>
+<meta name="description" content="Andy Alexander, Linux systems administrator — five featured infrastructure projects, documented as production-style runbooks.">
 <style>
   :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--accent:#0a5;--border:#ddd;--code-bg:#f6f8fa;}
   @media (prefers-color-scheme: dark){
@@ -15,17 +15,17 @@
   a:hover{text-decoration:underline;}
   nav a{margin-right:1rem;}
   h1{font-size:1.9rem;margin-bottom:.25rem;}
-  h2{font-size:1.3rem;border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-top:2rem;}
-  h3{font-size:1.05rem;margin-bottom:.4rem;}
+  h2{font-size:1.3rem;border-bottom:1px solid var(--border);padding-bottom:.25rem;margin-top:2.2rem;}
+  h3{font-size:1.05rem;margin:1.6rem 0 .3rem;}
   .tagline{color:var(--muted);margin-top:0;}
+  .proj p{margin:.3rem 0;}
+  .label{font-weight:600;}
+  .links{font-size:.92rem;}
+  .tag{font-size:.75rem;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0 .35rem;margin-left:.4rem;vertical-align:middle;}
   ul{padding-left:1.2rem;}
   li{margin:.3rem 0;}
-  .done::before{content:"✅ ";}
-  .wip::before{content:"🚧 ";}
-  .todo::before{content:"📋 ";}
   pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;overflow-x:auto;font-size:.85rem;}
   footer{margin-top:2.5rem;color:var(--muted);font-size:.9rem;}
-  footer a{color:var(--accent);}
 </style>
 </head>
 <body>
@@ -36,116 +36,166 @@
   <a href="https://greenbean.org/resume/">Resume</a>
 </nav>
 
-<h1>greenbean.org</h1>
-<p class="tagline">Andy Alexander — Linux Systems and Infrastructure</p>
+<h1>Andy Alexander</h1>
+<p class="tagline">Linux Systems Administrator — Linux systems &amp; infrastructure</p>
 
-<p>I'm a Linux systems administrator with extensive production experience. Since 2022
-I've run that same discipline at home: designing, breaking, fixing, and documenting
-real infrastructure. <strong>Everything here is real and running</strong> — Proxmox
-at home and at a remote client site, ZFS storage on TrueNAS SCALE, OPNsense edge routing over XGS-PON
-fiber, a WireGuard overlay network, redundant DNS, and automated verified backups.</p>
+<p>I'm a Linux systems administrator with extensive production experience: colocation,
+high-volume transactional platforms, and ESPN.com web infrastructure. I also run a
+multi-site environment at home and document it like production — what was built, why
+that approach, what broke, and how to rebuild it. The home network is what I depend on
+every day; anything marked <em>lab</em> is a lab.</p>
 
-<p><strong>Live right now:</strong> <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> —
-a Postgres-backed app on a 3-node k3s cluster, provisioned by Terraform + Ansible,
-monitored by Icinga2, and served over a self-managed Nginx/Let's Encrypt reverse proxy.
-Open it, add a task, watch the status panel in the corner.</p>
+<h2>Featured projects</h2>
 
-<h2>What this demonstrates</h2>
+<div class="proj">
+<h3>1. Infrastructure as code, live in public</h3>
+<p>Terraform provisions the hosts on Proxmox and Ansible configures them: a three-node
+k3s cluster, PostgreSQL, Icinga2, and an nginx/Let's Encrypt reverse proxy on a cloud
+host. It runs a Flask + PostgreSQL app anyone can use.</p>
+<p><span class="label">Design choice:</span> the public entry point is the cloud host,
+which reaches home over WireGuard — the home network accepts no inbound connections.</p>
+<p><span class="label">Honest limit:</span> all three k3s nodes share one physical host,
+so it's a working multi-node cluster, not real fault tolerance.</p>
+<p class="links"><a href="https://tasks.greenbean.org">Live demo</a> ·
+<a href="https://github.com/greenbeanorg/homelab-automation">Repo and write-up</a></p>
+</div>
 
-<h3>Linux systems administration</h3>
+<div class="proj">
+<h3>2. Kea DHCP high availability <span class="tag">lab</span></h3>
+<p>A hot-standby Kea DHCPv4 pair on Rocky Linux 9 (SELinux enforcing) across two Proxmox
+hosts, behind an ISP-style OPNsense relay with option 82. Configs live in Git with a
+drift check that runs before every deploy.</p>
+<p><span class="label">Design choice:</span> each peer keeps its own PostgreSQL lease
+database — a shared database would be the single point of failure HA exists to remove.</p>
+<p><span class="label">Result:</span> a scripted failover test stops the primary, gets a
+real client lease from the standby, and confirms that lease synced back on failback —
+about 58 s to failover. A perfdhcp load test found saturation near 2,700 leases/s and
+showed the limit was CPU.</p>
+<p class="links"><a href="https://github.com/greenbeanorg/homelab-docs/blob/main/KEA-DHCP-HA.md">HA runbook</a> ·
+<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/KEA-DHCP-LAB.md">Relay lab</a> ·
+<a href="https://github.com/greenbeanorg/homelab-automation/tree/master/kea">Configs and failover test</a></p>
+</div>
+
+<div class="proj">
+<h3>3. Storage and backups</h3>
+<p>Migrated 30 TB from mdadm RAID5 to TrueNAS SCALE with a ZFS RAIDZ1 pool, using PCIe
+SATA controller passthrough under Proxmox, and moved cross-host storage access to NFS.
+Off-site backups go to a cloud host with restic; UPS shutdown is handled by NUT.</p>
+<p><span class="label">Design choices:</span> restic runs on TrueNAS itself (the real data
+source, one less hop to break) and targets the WireGuard overlay address, so the backup
+endpoint is never exposed to the internet. NUT runs on a dedicated Raspberry Pi, with
+staggered thresholds so storage always shuts down before the hypervisor.</p>
+<p><span class="label">Result:</span> backups and full <code>restic check --read-data</code>
+verification run on a schedule; the shutdown sequence was reboot-tested across all three
+hosts.</p>
+<p class="links"><a href="https://github.com/greenbeanorg/homelab-docs/blob/main/TRUENAS.md">Storage migration</a> ·
+<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/RESTIC-BACKUP.md">Backups</a> ·
+<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/UPS.md">UPS</a></p>
+</div>
+
+<div class="proj">
+<h3>4. Root-cause analysis</h3>
+<p>Two investigations, written up in full, including the wrong turns.</p>
 <ul>
-  <li>systemd service management &amp; troubleshooting</li>
-  <li>Package management, patching, OS upgrades</li>
-  <li>Filesystems, disks, users, groups, permissions</li>
-  <li>SSH, journald/log analysis, process &amp; resource triage</li>
-  <li>Backup, restore, and service recovery</li>
+  <li><strong>A "bridge bug" that wasn't.</strong> One same-host VM pair could ping but
+  not hold a TCP connection. I first concluded the Proxmox bridge was at fault; packet
+  captures later showed a guest configured with a /32 prefix, sending every reply via the
+  gateway. The runbook keeps the original reasoning and explains why the evidence was
+  misread.</li>
+  <li><strong>A full hypervisor hang</strong> on the primary Proxmox host, traced to a
+  wedged USB controller shared with the UPS. The fix was moving UPS monitoring to its own
+  device.</li>
 </ul>
+<p class="links"><a href="https://github.com/greenbeanorg/homelab-docs/blob/main/SWEARENGEN-VMBR0-INTRA-BRIDGE-FORWARDING-BUG-2026-09.md">/32 write-up</a> ·
+<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/SWEARENGEN-USB-CONTROLLER-HANG-2026-09.md">USB hang write-up</a></p>
+</div>
 
-<h3>Infrastructure engineering</h3>
-<ul>
-  <li>Virtualization — Proxmox, KVM/LXC, Kubernetes (k3s)</li>
-  <li>Networking, VLANs, firewalling, DNS/DHCP</li>
-  <li>Storage design — ZFS, RAID, NFS/SMB</li>
-  <li>Monitoring &amp; observability — Icinga2, Uptime Kuma</li>
-  <li>Automation — Terraform, Ansible, Python/Bash</li>
-  <li>Incident response &amp; root-cause analysis</li>
-</ul>
+<div class="proj">
+<h3>5. Nested vSphere 8 cluster <span class="tag">lab</span></h3>
+<p>A two-host ESXi 8 cluster with vCenter, nested on Proxmox: vCenter deployed by the CLI
+installer from a JSON template, inventory and a distributed switch built with
+<code>govc</code>, an NFS shared datastore, templates, and a VMware → Proxmox migration
+with Proxmox's native importer.</p>
+<p><span class="label">Design choices:</span> both ESXi VMs get one CPU model across two
+Intel generations, so vMotion works without EVC; vCenter stays on local storage, so losing
+the NFS server can't take the management plane down with it.</p>
+<p><span class="label">Result:</span> vMotion at zero packet loss, and a vSphere HA test
+by hard-stopping a host — failure detected in 18 s and the VM restarted on the survivor.</p>
+<p class="links"><a href="https://github.com/greenbeanorg/homelab-docs/blob/main/VSPHERE-NESTED-LAB.md">Runbook</a></p>
+</div>
 
-<h2>Selected work</h2>
-<ul>
-  <li class="done">Provisioned a 3-node Kubernetes (k3s) cluster with supporting PostgreSQL and Icinga2 hosts entirely via Terraform and Ansible, deploying a containerized Flask/PostgreSQL application exposed publicly at <a href="https://tasks.greenbean.org">tasks.greenbean.org</a> over a self-managed Nginx/Let's Encrypt reverse proxy</li>
-  <li class="done">Root-caused and resolved a full hypervisor hang on the primary Proxmox host, traced to a wedged USB controller shared with UPS monitoring</li>
-  <li class="done">Diagnosed a same-host bridge networking bug that silently dropped one specific VM-to-VM TCP flow despite clean firewall/VLAN/FDB state at every layer checked; workaround routes the flow through the firewall instead (root cause still open)</li>
-  <li class="done">Closed out an intermittent host scare on the primary Proxmox host with a full memory/MCE/RAS/EDAC investigation — no hardware fault confirmed, with a documented recurrence-testing plan</li>
-  <li class="done">VLAN segmentation — flat 10.0.0.0/24 rebuilt into a segmented VLAN network (10.79.x.x) across the core switch, OPNsense, both Proxmox hosts, and the AP</li>
-  <li class="done">30TB storage migration: mdadm RAID5 → TrueNAS SCALE / ZFS RAIDZ1 with PCIe SATA passthrough</li>
-  <li class="done">WireGuard hub-and-spoke VPN — cloud-hosted hub, multi-site subnet routing, roaming clients</li>
-  <li class="done">Automated restic backup pipeline across three Proxmox nodes, firewall infrastructure, and home automation — 90-day retention, scheduled integrity verification, off-site replication to Oracle Cloud</li>
-  <li class="done">Replaced upstream DNS forwarding with per-host recursive, DNSSEC-validating Unbound resolvers on both Pi-holes</li>
-  <li class="done">Migrated availability monitoring off broken unauthenticated Pi-hole checks to authenticated Push-based monitors after a Pi-hole v6 auth change</li>
-</ul>
-
-<h2>Planned</h2>
-<ul>
-  <li class="todo">Extend Ansible fleet roles — baseline, NUT, restic, and Docker host roles — to swearengen and wu</li>
-  <li class="todo">Extend Terraform coverage to the rest of the Proxmox fleet</li>
-</ul>
-
-<h2>Infrastructure at a glance</h2>
+<h2>How it's wired</h2>
 <pre class="mermaid">
 flowchart TB
-    INET((Internet<br/>XGS-PON Fiber))
-    ONT[XGS-PON ONT-on-a-stick<br/>SFP+ module]
+    INET(("Internet<br/>XGS-PON fiber"))
+    USER(["Public visitors"])
 
-    subgraph SW [MikroTik CRS310-8G+2S+ — RouterOS]
-        BW[bridge-WAN<br/>SFP+ cage + 1 port]
-        BL[bridge-LAN<br/>remaining ports]
+    subgraph SW ["MikroTik CRS310 switch"]
+        BW["bridge-WAN<br/>ONT-on-a-stick SFP+"]
+        BL["bridge-LAN"]
     end
 
-    subgraph WU [wu — Proxmox host, ODROID-H3]
-        FW[OPNsense VM — Router / Firewall<br/>Kea DHCPv4 · option 6 hands out both resolvers<br/>WireGuard spoke]
-        PH2[pihole2 · LXC 1000<br/>Pi-hole, host install — secondary DNS]
+    subgraph WU ["wu — Proxmox"]
+        FW["OPNsense VM<br/>router · firewall · DHCP"]
+        PH2["pihole2<br/>secondary DNS + Unbound"]
     end
 
-    PH1[pihole · ODROID-XU4<br/>Armbian 26.8 / kernel 6.6<br/>Pi-hole in Docker — primary DNS]
+    PH1["pihole<br/>primary DNS + Unbound"]
+    PI["pi2b<br/>NUT UPS server"]
 
-    subgraph SWG [swearengen — Proxmox host, i5-10600K / 48GB]
-        NAS[TrueNAS SCALE VM<br/>ZFS RAIDZ1 pool — PCIe SATA passthrough]
-        FARN[farnum — Plex Media Server VM over NFS]
-        HA[Home Assistant VM]
+    subgraph SWG ["swearengen — Proxmox"]
+        NAS["TrueNAS SCALE<br/>ZFS RAIDZ1"]
+        APPS["Plex · Home Assistant"]
     end
 
-    CLIENTS[LAN clients]
-
-    KK1[kk1 · Oracle Cloud Ampere A1<br/>WireGuard hub — static public endpoint<br/>off-site restic target]
-
-    subgraph REMOTE [Remote client site]
-        ZOM[zombie · Debian VM<br/>WireGuard spoke + subnet router]
-        RPX[Remote Proxmox<br/>Pi-hole + LinuxGSM game server]
+    subgraph GAR ["garrett — Proxmox"]
+        K3S["k3s · PostgreSQL · Icinga2<br/>Terraform + Ansible"]
     end
 
-    INET --- ONT --- BW
-    BW ---|"wu NIC 1 → WAN vNIC"| FW
-    FW ---|"LAN vNIC → wu NIC 2"| BL
-    BL --- CLIENTS
+    KK1["kk1 — cloud<br/>WireGuard hub · nginx/TLS · backup target"]
+    REMOTE["Remote site<br/>Proxmox · WireGuard spoke"]
+
+    INET --- BW
+    BW ---|"wu NIC 1"| FW
+    FW ---|"wu NIC 2"| BL
     BL --- PH1
+    BL --- PI
     BL --- SWG
-    CLIENTS -. "resolver 1" .-> PH1
-    CLIENTS -. "resolver 2" .-> PH2
+    BL --- GAR
     FW == "WireGuard" ==> KK1
-    ZOM == "WireGuard" ==> KK1
-    ZOM --- RPX
-    SWG -. restic over SFTP .- KK1
+    REMOTE == "WireGuard" ==> KK1
+    USER -->|"HTTPS"| KK1
+    KK1 -. "tasks.greenbean.org" .-> K3S
+    NAS -. "restic" .-> KK1
 </pre>
 
-<h2>Documentation</h2>
-<p><a href="https://github.com/greenbeanorg/homelab-docs">homelab-docs — 23 runbooks, ~7,900 lines — each records what was built, why that approach, what broke, and how to rebuild it from nothing</a></p>
+<p><strong>Edge:</strong> fiber terminates on an SFP+ ONT in an isolated WAN bridge on the
+switch, which hands off to one NIC on <code>wu</code>; the OPNsense VM routes and sends LAN
+traffic back out a second NIC — router-on-a-VM with a physical hairpin.
+<strong>LAN:</strong> segmented into VLAN trust zones
+(<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/VLAN-SEGMENTATION.md">runbook</a>),
+with two DNS resolvers in separate failure domains, each running its own validating Unbound
+(<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/DNS.md">runbook</a>).
+<strong>Sites:</strong> joined by a hub-and-spoke WireGuard overlay through a cloud host, so
+neither house needs an inbound port
+(<a href="https://github.com/greenbeanorg/homelab-docs/blob/main/WIREGUARD.md">runbook</a>).</p>
+
+<h2>Everything else</h2>
+<ul>
+  <li><a href="https://github.com/greenbeanorg/homelab-docs">homelab-docs</a> — the full
+  runbook catalog by category: networking, storage, monitoring, troubleshooting, and labs.</li>
+  <li><a href="https://github.com/greenbeanorg/homelab-automation">homelab-automation</a> —
+  the Terraform, Ansible, Kea, and Uptime Kuma code behind the projects above.</li>
+  <li><a href="https://github.com/greenbeanorg/netwatch-freebsd">netwatch-freebsd</a> — a
+  FreeBSD/OPNsense port of a Rust network monitor, including the root cause of why it
+  failed to start on FreeBSD.</li>
+</ul>
 
 <footer>
   <a href="https://github.com/greenbeanorg">github.com/greenbeanorg</a> ·
   <a href="https://linkedin.com/in/andy-alexander-linux">LinkedIn</a> ·
   <a href="https://greenbean.org/resume/">Resume</a> ·
-  Ormond Beach, FL — open to remote Linux systems administration / systems engineering roles
+  Ormond Beach, FL — open to remote Linux systems administration roles
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
